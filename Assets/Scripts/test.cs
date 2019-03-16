@@ -7,7 +7,7 @@ public class test : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Material material = MoveBlue.instance.material;
-        this.GetComponent<MeshRenderer>().material = material;
+        //Material material = MoveBlue.instance.material;
+        //this.GetComponent<MeshRenderer>().material = material;
     }
 }
