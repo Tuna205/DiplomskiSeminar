@@ -11,7 +11,7 @@ namespace Scripts.Map{
         //image of the tile
         private SpriteRenderer _spriteRenderer;
         //collider for selecting this tile
-        private new Collider2D _collider;
+        private Collider2D _collider;
         //saves data from objects on this tile
         private ObjectsOnTile _objectsOnTile;
 
@@ -20,6 +20,15 @@ namespace Scripts.Map{
 
         public Vector2Int Position{
             get{return _position;}
+        }
+
+        public ObjectsOnTile ObjectsOnTile{
+            get{
+                return _objectsOnTile;
+            }
+            set{
+                _objectsOnTile = value;
+            }
         }
 
         //Call this function first

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ScriptableObjects.Managers
 {
-    [CreateAssetMenu(fileName = "New Background Sprites", menuName = "Background Sprites")]
+    [CreateAssetMenu(fileName = "New Background Sprites", menuName = "ScriptableObjects/Background Sprites")]
     public class BackgroundSpriteManager : ScriptableObject{
         public Sprite topRight;
         public Sprite topCenter;

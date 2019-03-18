@@ -18,15 +18,23 @@ namespace Scripts.Map
 
         private SelectedTiles _selectedTiles;
 
+        public Tile[,] TileMatrix{
+            get{
+                return _tileMatrix;
+            }
+        }
 
-        void Start(){
+        private void Awake(){
             _tileMatrix = new Tile[sizeX, sizeY];
             //_startCoordinates = new Vector3(-9f, 4.5f, 0f);
             _selectedTiles = SelectedTiles.CreateInstance();
             Vector3 tmp = this.transform.localScale;
             _tileSize = new Vector2(tmp.x * 0.32f, tmp.y * 0.32f);
-
             SetupMap();
+        }
+
+        void Start(){
+
         }
 
         private void SetupMap()
@@ -56,6 +64,10 @@ namespace Scripts.Map
             return difX + difY;
         }
 
+        public bool CheckInBounds(Vector2Int pos)
+        {
+            return (pos.x >= 0 && pos.x < sizeX && pos.y >= 0 && pos.y < sizeY);
+        }
 
 
         private Sprite FindTileSprite(int x, int y){

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5381776356436105937}
   m_Layer: 0
   m_Name: Map
-  m_TagString: Untagged
+  m_TagString: Map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1262483546159963153}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.94, y: 0.7294733, z: -4.642438}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sizeX: 4
   sizeY: 4
-  backgroundSpriteManager: {fileID: 11400000, guid: 389515e4cd3f341479998ec4c1de9dcb,
+  backgroundSpriteManager: {fileID: 11400000, guid: 3b2ab3a748522e44e9b2d025f23842a3,
     type: 2}
   tilePrefab: {fileID: 8048470666447016359, guid: ecc5b89dbb51c9b4a9394b17d682646f,
     type: 3}
