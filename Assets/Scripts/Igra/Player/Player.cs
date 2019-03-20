@@ -8,16 +8,17 @@ namespace Scripts.Player{
     public class Player : MonoBehaviour{
         private PlayerHp _playerHp;
         private Map.Map _map;
-        private Tile _myTile;
+        public PlayerPosition playerPosition;
+
+        public PlayerBombs playerBombs;
         
         private void Awake(){
             _map = MapManager.Instance.GetComponent<Map.Map>();
         }
 
         private void Start(){
-            _myTile = _map.TileMatrix[0, 0];
-            _myTile.ObjectsOnTile.playerOnTile = this;
-            this.transform.position = _myTile.transform.position;
+            playerPosition.tile = _map.TileMatrix[0,0];
+            this.transform.position = playerPosition.tile.transform.position;
         }
 
         public bool MoveToTile(Vector2Int newPos)
@@ -34,31 +35,30 @@ namespace Scripts.Player{
                 return false;
             }
             */
-            _myTile.ObjectsOnTile.playerOnTile = null;
 
-            _myTile = _map.TileMatrix[newPos.x, newPos.y];
-            _myTile.ObjectsOnTile.playerOnTile = this;
+            playerPosition.tile = _map.TileMatrix[newPos.x, newPos.y];
             //TODO make movement animation
-            this.transform.position = _myTile.transform.position;
+            this.transform.position = playerPosition.tile.transform.position;
             return true;
         }
-
+        
         private void Update(){
             if(Input.GetKeyDown(KeyCode.W)){
-                MoveToTile(_myTile.Position + new Vector2Int(-1,0));
+                MoveToTile(playerPosition.tile.Position + new Vector2Int(-1,0));
             }
             if (Input.GetKeyDown(KeyCode.S))
             {
-                MoveToTile(_myTile.Position + new Vector2Int(1, 0));
+                MoveToTile(playerPosition.tile.Position + new Vector2Int(1, 0));
             }
             if (Input.GetKeyDown(KeyCode.D))
             {
-                MoveToTile(_myTile.Position + new Vector2Int(0, 1));
+                MoveToTile(playerPosition.tile.Position + new Vector2Int(0, 1));
             }
             if (Input.GetKeyDown(KeyCode.A))
             {
-                MoveToTile(_myTile.Position + new Vector2Int(0, -1));
+                MoveToTile(playerPosition.tile.Position + new Vector2Int(0, -1));
             }
         }
+        
     }
 }

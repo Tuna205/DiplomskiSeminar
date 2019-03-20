@@ -11,6 +11,18 @@ namespace Scripts.Map
 
         public BackgroundSpriteManager backgroundSpriteManager;
         public GameObject tilePrefab;
+
+        public PlayerBombs player1Bombs;
+
+        public PlayerPosition player1Position;
+
+        public PlayerBombs player2Bombs;
+
+        public PlayerPosition player2Position;
+
+        public ObstacleList obstacleList;
+
+        
         private Tile[,] _tileMatrix;
         //za 4x4 dobro je (-2,4,0)
         private Vector3 _startCoordinates;
