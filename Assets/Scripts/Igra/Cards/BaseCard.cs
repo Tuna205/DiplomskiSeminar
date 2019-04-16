@@ -7,7 +7,7 @@ using Scripts.Player;
 namespace Scripts.Cards{
     [RequireComponent(typeof(SpriteRenderer))]
     [RequireComponent(typeof(BoxCollider2D))]
-    public abstract class BaseCard : MonoBehaviour, ICloneable{
+    public abstract class BaseCard : MonoBehaviour{
 
         protected Player.Player player;
         public CardData cardData;
@@ -22,24 +22,21 @@ namespace Scripts.Cards{
             IdToCard.Instance.dict[Id] = this;
             //TODO setup collider width/height
         }
+
+        public virtual void Awake(){
+            Init();
+        }
         
         public void OnMouseDown()
         {
-            print("Card Hit");
+            print($"Card Hit {this.name}");
             if (!Ability())
             {
                 Debug.Log("Ability failed");
                 return;
             }
-            //TODO micanje karte iz ruke
-            //RemoveCardFromHand(this.gameObject);
-            //TODO pogle object pooling
-            //Destroy(gameObject);
-        }
-
-        public object Clone()
-        {
-            return Instantiate(this.gameObject);
+            Hand.Hand hand = HandManager.Instance.GetComponent<Hand.Hand>();
+            hand.RemoveCard(this);
         }
     }
 }

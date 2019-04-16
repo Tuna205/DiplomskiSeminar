@@ -50,7 +50,7 @@ MonoBehaviour:
   tilePrefab: {fileID: 8048470666447016359, guid: ecc5b89dbb51c9b4a9394b17d682646f,
     type: 3}
   player1Bombs: {fileID: 11400000, guid: 922b6aad5d0592447891a53394327e9d, type: 2}
-  player1Position: {fileID: 11400000, guid: 333b7adf5737e614b8d37d7205003b5b, type: 2}
+  player1Position: {fileID: 11400000, guid: ad37ce611281cb7438130db07d8cb1ed, type: 2}
   player2Bombs: {fileID: 0}
-  player2Position: {fileID: 0}
+  player2Position: {fileID: 11400000, guid: 29d8131fbb37e124da29328961fe9f35, type: 2}
   obstacleList: {fileID: 0}

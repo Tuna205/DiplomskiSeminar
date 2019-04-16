@@ -4,6 +4,7 @@ using System.Security.Cryptography;
 using UnityEngine;
 using Scripts.Deck;
 using Scripts.Cards;
+using ScriptableObjects.Managers;
 
 namespace Scripts.Deck
 {
@@ -18,7 +19,12 @@ namespace Scripts.Deck
             {
                 _deck.Add(card.Id);
             });
-            Shuffle(); 
+            Shuffle();
+        }
+
+        void Awake()
+        {
+            Init();
         }
 
         private void Start(){
@@ -27,9 +33,9 @@ namespace Scripts.Deck
         }
 
         //zovi samo iz Hand.Draw
-        public List<BaseCard> Draw(int n)
+        public List<int> Draw(int n)
         {
-            List<BaseCard> cardsDrawn = new List<BaseCard>();
+            List<int> cardsDrawn = new List<int>();
             if (n > _deck.Count)
             {
                 print("Not enough cards in deck");
@@ -38,7 +44,7 @@ namespace Scripts.Deck
 
             for (int i = 0; i < n; i++)
             {
-                cardsDrawn.Add(IdToCard.Instance.dict[_deck[i]]);
+                cardsDrawn.Add(_deck[i]);
             }
             for (int i = 0; i < n; i++)
             {
@@ -83,20 +89,12 @@ namespace Scripts.Deck
             throw new NotImplementedException();
         }
 
-        void Awake()
-        {
-            Init();
+        //TODO samo za test
+        void OnMouseDown(){
+            Hand.Hand hand = HandManager.Instance.GetComponent<Hand.Hand>();
+            hand.Draw(1);
+            print($"Deck has {_deck.Count} cards");
         }
-        /*
-        public void DeepCopy(List<BaseCard> from, List<BaseCard> to)
-        {
-            to = new List<BaseCard>(from.Count);
-            from.ForEach((item) =>
-            {
-                to.Add(item.Clone() as BaseCard);
-            });
-        }
-        */
     }
 }
 

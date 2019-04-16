@@ -2,10 +2,16 @@ using UnityEngine;
 
 namespace Scripts.Player
 {
-    internal class PlayerHp : ScriptableObject
+    public class HealthPoints : ScriptableObject
     {
         private int _hp;
-        public int maxHp;
+        private int maxHp;
+
+        public int Hp{
+            get{
+                return _hp;
+            }
+        }
 
         public void ChangeHp(int n)
         {
@@ -31,15 +37,16 @@ namespace Scripts.Player
             //RenderHp();
         }
 
-        private void Init()
+        private void Init(int maxHp)
         {
-            _hp = maxHp;
+            this.maxHp = maxHp;
+            this._hp = maxHp;
         }
 
-        public static PlayerHp CreateInstance()
+        public static HealthPoints CreateInstance(int maxHp)
         {
-            var data = ScriptableObject.CreateInstance<PlayerHp>();
-            data.Init();
+            var data = ScriptableObject.CreateInstance<HealthPoints>();
+            data.Init(maxHp);
             return data;
         }
     }

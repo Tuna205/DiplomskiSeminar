@@ -13,48 +13,62 @@ namespace Scripts.Hand
         //TODO promijeni
         public Deck.Deck _deck;
 
-        private List<BaseCard> _hand;
+        private List<int> _handIds;
+
+        private Vector3 lastCardPosition;
+
+        //public CardsInHand cardsInHand;
+
+        private void Awake()
+        {
+            //_hand = cardsInHand.cards;
+            _handIds = new List<int>();
+            //cardsInHand.cards.Clear();
+        }
+
+        private void Start()
+        {
+            //lastCardPosition = Vector3.zero;
+            Draw(maxCards);
+        }
 
         public void Draw(int n){
-            if (_hand.Count + n > maxCards)
+            if (_handIds.Count + n > maxCards)
             {
                 //TODO discard cards
                 print("To many cards in hand");
+                return;
             }
             //TODO kada dodam deck
-            _hand.AddRange(_deck.Draw(n));
-            ShowCardsInHand();
+            List<int> addedCards = _deck.Draw(n);
+            _handIds.AddRange(addedCards);
+            foreach(int cardId in addedCards){
+                InstantiateCard(IdToCard.Instance.dict[cardId]);
+            }
         }
-        //TODO display cards
-        //Promijeni algoritam!!!
-        public void ShowCardsInHand()
+
+        //Uses localCardPosition for instantiate postion
+        public void InstantiateCard(BaseCard card){
+            var tmp = Instantiate(card, this.transform.position + lastCardPosition, Quaternion.identity, this.transform);
+            lastCardPosition += new Vector3(3, 0, 0);
+        }
+
+        public void RemoveCard(BaseCard card)
         {
-            //hack 1
-            for (int i = 0; i < this.transform.childCount; i++)
-            {
-                Destroy(this.transform.GetChild(i).gameObject);
-            }
-
-            Vector3 position = this._deck.gameObject.transform.position + new Vector3(2, 0, 0);
-
-            for (int i = 0; i < _hand.Count; i++)
-            {
-                var tmp = Instantiate(_hand[i], position, Quaternion.identity, this.transform);
-                tmp.name = _hand[i].name;
-                //hack 2 - cards lose box coliders because of hack 1 ??
-                tmp.GetComponent<BoxCollider2D>().enabled = true;
-                _hand[i] = tmp;
-                position += new Vector3(1, 0, 0);
-            }
+            //TODO if go none in hand
+            _handIds.Remove(card.Id);
+            int siblingIndex = card.transform.GetSiblingIndex();
+            Destroy(card.gameObject);
+            RearangeCards(siblingIndex);
         }
 
-        private void Awake(){
-            //_hand = cardsInHand.cards;
-            _hand = new List<BaseCard>();
-        }
-
-        private void Start(){
-            Draw(maxCards);
+        //need number of cards and card child count from hand parent
+        private void RearangeCards(int destroyedSiblingIndex){
+            foreach(Transform t in this.transform){
+                if(t.GetSiblingIndex() < destroyedSiblingIndex) continue;
+                t.transform.position -= new Vector3(3, 0, 0);
+            }
+            lastCardPosition -= new Vector3(3, 0, 0);
         }
     }
 }

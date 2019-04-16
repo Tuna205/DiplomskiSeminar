@@ -12,7 +12,7 @@ namespace ScriptableObjects.Managers{
                     _inst = GameObject.FindGameObjectWithTag("Player");
                 }
                 if(_inst == null){
-                    throw new MissingReferenceException("Player not in scene");
+                    //throw new MissingReferenceException("Player not in scene");
                 }
                 return _inst;
             }

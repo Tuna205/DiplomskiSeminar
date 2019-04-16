@@ -7,10 +7,6 @@ namespace Scripts.Hand
     [CreateAssetMenu(fileName = "New Cards in hand", menuName = "ScriptableObjects/Cards in hand")]
     public class CardsInHand : ScriptableObject
     {
-        public List<BaseCard> cards;
-
-        public void Awake(){
-            cards = new List<BaseCard>();
-        }
+        public List<BaseCard> cards = new List<BaseCard>();
     }
 }

@@ -14,11 +14,11 @@ namespace Scripts.Map
 
         public PlayerBombs player1Bombs;
 
-        public PlayerPosition player1Position;
+        public CharacterPosition player1Position;
 
         public PlayerBombs player2Bombs;
 
-        public PlayerPosition player2Position;
+        public CharacterPosition player2Position;
 
         public ObstacleList obstacleList;
 
@@ -43,10 +43,6 @@ namespace Scripts.Map
             Vector3 tmp = this.transform.localScale;
             _tileSize = new Vector2(tmp.x * 0.32f, tmp.y * 0.32f);
             SetupMap();
-        }
-
-        void Start(){
-
         }
 
         private void SetupMap()
