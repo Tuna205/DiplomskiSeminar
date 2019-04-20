@@ -1,14 +1,21 @@
 using UnityEngine;
 using System.Collections.Generic;
 using Scripts.Cards;
+using Scripts.Player;
+using ScriptableObjects.Cards;
+using System;
 
 namespace Scripts.Hand
 {
     public class Hand : MonoBehaviour
     {
+        public CardBack cardBack;
+        //nazalost treba da karte znaju cije su
+        public BaseCharacter character;
         public int maxCards = 5;
-        public Vector3 position;
-        //public CardsInHand cardsInHand;
+
+        //samo za ucitavanje!
+        public bool canPlay;
 
         //TODO promijeni
         public Deck.Deck _deck;
@@ -18,18 +25,39 @@ namespace Scripts.Hand
         private Vector3 lastCardPosition;
 
         //public CardsInHand cardsInHand;
+        private bool _canPlayCards;
+
+        public bool CanPlayCards{
+            get{
+                return _canPlayCards;
+            }
+
+            set{
+                _canPlayCards = value;
+            }
+        }
 
         private void Awake()
         {
             //_hand = cardsInHand.cards;
             _handIds = new List<int>();
-            //cardsInHand.cards.Clear();
+            _canPlayCards = canPlay;
         }
 
         private void Start()
         {
             //lastCardPosition = Vector3.zero;
             Draw(maxCards);
+        }
+
+        private void ShowCardBackSide()
+        {
+            this.GetComponent<SpriteRenderer>().sprite = cardBack.artwork;
+
+        }
+
+        public int NumOfCards(){
+            return _handIds.Count;
         }
 
         public void Draw(int n){
@@ -48,7 +76,13 @@ namespace Scripts.Hand
         }
 
         //Uses localCardPosition for instantiate postion
-        public void InstantiateCard(BaseCard card){
+        private void InstantiateCard(BaseCard card){
+            //ako player nemoze igrat karte onda prikazi backside
+            /*
+            if(CanPlayCards == false){
+                card.ShowBack();
+            }
+            */
             var tmp = Instantiate(card, this.transform.position + lastCardPosition, Quaternion.identity, this.transform);
             lastCardPosition += new Vector3(3, 0, 0);
         }
@@ -57,6 +91,7 @@ namespace Scripts.Hand
         {
             //TODO if go none in hand
             _handIds.Remove(card.Id);
+            print(_handIds.Count);
             int siblingIndex = card.transform.GetSiblingIndex();
             Destroy(card.gameObject);
             RearangeCards(siblingIndex);
@@ -69,6 +104,14 @@ namespace Scripts.Hand
                 t.transform.position -= new Vector3(3, 0, 0);
             }
             lastCardPosition -= new Vector3(3, 0, 0);
+        }
+
+        private void Update(){
+            foreach(int i in _handIds){
+                //print($"{this.name} {i}");
+            }
+            print($"{this.gameObject.name} last position = {lastCardPosition.x}");
+
         }
     }
 }

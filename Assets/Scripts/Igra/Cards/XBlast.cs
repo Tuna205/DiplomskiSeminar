@@ -15,10 +15,10 @@ namespace Scripts.Cards
 
         public override bool Ability()
         {
-            DmgTile(player.position.tile.Position + new Vector2Int(1, 1));
-            DmgTile(player.position.tile.Position + new Vector2Int(1, -1));
-            DmgTile(player.position.tile.Position + new Vector2Int(-1, 1));
-            DmgTile(player.position.tile.Position + new Vector2Int(-1, -1));
+            DmgTile(character.position.tile.Position + new Vector2Int(1, 1));
+            DmgTile(character.position.tile.Position + new Vector2Int(1, -1));
+            DmgTile(character.position.tile.Position + new Vector2Int(-1, 1));
+            DmgTile(character.position.tile.Position + new Vector2Int(-1, -1));
             return true;
         }
     }

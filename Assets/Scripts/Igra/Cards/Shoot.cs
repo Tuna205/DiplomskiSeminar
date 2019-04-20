@@ -24,15 +24,15 @@ namespace Scripts.Cards
         //TODO ne koristiit new
         public override bool Ability()
         {
-            DmgTile(player.position.tile.Position + new Vector2Int(1, 0));
-            DmgTile(player.position.tile.Position + new Vector2Int(-1, 0));
-            DmgTile(player.position.tile.Position + new Vector2Int(0, 1));
-            DmgTile(player.position.tile.Position + new Vector2Int(0, -1));
+            DmgTile(character.position.tile.Position + new Vector2Int(1, 0));
+            DmgTile(character.position.tile.Position + new Vector2Int(-1, 0));
+            DmgTile(character.position.tile.Position + new Vector2Int(0, 1));
+            DmgTile(character.position.tile.Position + new Vector2Int(0, -1));
 
-            DmgTile(player.position.tile.Position + new Vector2Int(2, 0));
-            DmgTile(player.position.tile.Position + new Vector2Int(-2, 0));
-            DmgTile(player.position.tile.Position + new Vector2Int(0, 2));
-            DmgTile(player.position.tile.Position + new Vector2Int(0, -2));
+            DmgTile(character.position.tile.Position + new Vector2Int(2, 0));
+            DmgTile(character.position.tile.Position + new Vector2Int(-2, 0));
+            DmgTile(character.position.tile.Position + new Vector2Int(0, 2));
+            DmgTile(character.position.tile.Position + new Vector2Int(0, -2));
             return true;
         }
     }

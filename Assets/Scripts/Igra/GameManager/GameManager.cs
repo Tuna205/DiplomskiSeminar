@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using Scripts.Cards;
 
-namespace Scripts.Hand
+namespace Scripts.GM
 {
     public enum TurnState{
         PlayerTurn,

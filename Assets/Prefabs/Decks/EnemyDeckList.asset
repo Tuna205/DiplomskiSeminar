@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2626ff52c416f7d4390d1962c3ed3059, type: 3}
+  m_Name: EnemyDeckList
+  m_EditorClassIdentifier: 
+  startDeckList:
+  - {fileID: 8408119749199765663, guid: 899fb4cd4f06cc64bbadf71d00cfec11, type: 3}
+  - {fileID: 2163470782026732904, guid: 9dc62f02c41ed134ebad0151a8ae907d, type: 3}
+  - {fileID: 8408119749199765663, guid: 899fb4cd4f06cc64bbadf71d00cfec11, type: 3}
+  - {fileID: 3707445740199359594, guid: 4173f32de2a36614f8a7f3fff5c79ae5, type: 3}
+  - {fileID: 6873168855219042846, guid: 5ab11af97b3bbff42b1aa752b89eb1e5, type: 3}
+  - {fileID: 4934063237849195055, guid: 85fb8c51602deb046b22bade92c62f0e, type: 3}
+  - {fileID: 7171191292947425706, guid: fd24f0be454d81746bb0b0ac7dec1e64, type: 3}
+  - {fileID: 2370281926961825961, guid: 810481fd6369bcb46bdd5c3ce278abbc, type: 3}
