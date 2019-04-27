@@ -16,13 +16,18 @@ namespace Scripts.AI
             _hand = hand;
         }
 
-        public override void PlayCard()
+        public override BaseCard PlayCard(bool dontPlay)
         {
             System.Random rng = new System.Random();
-            if(_hand.NumOfCards() == 0) return;
+            if(_hand.NumOfCards() == 0) return null; //TODO ??
             int rand = rng.Next(0, _hand.NumOfCards() - 1);
+            BaseCard card = _hand.transform.GetChild(rand).GetComponent<BaseCard>();
             Debug.Log($"Enemy plays: ");
-            _hand.transform.GetChild(rand).GetComponent<BaseCard>().Play();           
+            if(dontPlay == false){
+                card.Play();
+            }
+            Debug.Log($"Enemy added {card.name}");
+            return card;
         }
     }
 }

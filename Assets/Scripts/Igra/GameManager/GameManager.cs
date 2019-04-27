@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
 using Scripts.Cards;
+using System.Collections;
+using System;
 
 namespace Scripts.GM
 {
@@ -11,7 +13,16 @@ namespace Scripts.GM
     }
     public class GameManager : MonoBehaviour
     {
-        private List<BaseCard> queue;
+        public Canvas PlayerTurnCanvas;
+        public Canvas EnemyTurnCanvas;
+        public Hand.Hand playerHand;
+
+        public Hand.Hand enemyHand;
+        public EnemyPlayer enemy;
+
+        public bool firstTurnPlayer = true;
+
+        private List<BaseCard> cardQueue;
         private TurnState currentState;
 
         public int numCardsToPlay = 3;
@@ -20,54 +31,99 @@ namespace Scripts.GM
 
         private int enemyCardsPlayed = 0;
 
-        public void PlayerTurn(){
+
+        private bool playerPlayedCard;
+
+        public void PlayerTurnStart(){
+            //StartCoroutine(ShowCanvasForSecounds(PlayerTurnCanvas, 2));
+            playerHand.CanPlayCards = true;
             //indikator za player turn
             //Omoguci da player igra karte iz ruke
+
         }
 
-        public void EnemyTurn(){
-            //hook upaj enemy ai
+        public void PlayerTurnEnd()
+        {
+            playerHand.CanPlayCards = false;
+            NextTurnState();
+        }
+
+
+        public void EnemyTurnStart()
+        {
+            //StartCoroutine(ShowCanvasForSecounds(EnemyTurnCanvas, 2));
+            //enemy igra kartu
+            cardQueue.Add(enemy.ai.PlayCard(true));
+            EnemyTurnEnd();
+        }
+
+        public void EnemyTurnEnd()
+        {
+            //enemy ai turn
+            NextTurnState();
         }
 
         public void Resolve(){
-            for(int i = 0; i < queue.Count; i++){
-                queue[i].Ability();
+            
+            for(int i = 0; i < cardQueue.Count; i++){
+                cardQueue[i].Ability();
             }
+            
+            playerHand.Draw(numCardsToPlay);
+            enemyHand.Draw(numCardsToPlay);
+
+
+            NextTurnState();
         }
 
         private void NextTurnState(){
-            if (playerCardsPlayed == enemyCardsPlayed && playerCardsPlayed == numCardsToPlay)
+            if (playerCardsPlayed == numCardsToPlay && playerCardsPlayed == enemyCardsPlayed)
             {
                 currentState = TurnState.Resolve;
                 playerCardsPlayed = 0;
                 enemyCardsPlayed = 0;
+                Resolve();
             }
 
             else if(currentState == TurnState.PlayerTurn){
                 currentState = TurnState.EnemyTurn;
                 playerCardsPlayed++;
+                EnemyTurnStart();
             }
 
-            else if(currentState == TurnState.PlayerTurn)
+            else if(currentState == TurnState.EnemyTurn)
             {
-                currentState = TurnState.Resolve;
+                currentState = TurnState.PlayerTurn;
                 enemyCardsPlayed++;
+                PlayerTurnStart();
+            }
+            else if(currentState == TurnState.Resolve){
+                if(firstTurnPlayer == true){
+                    //ako je player prvi onda nakon 3 poteza igra enemy prvi
+                    
+                    currentState = TurnState.EnemyTurn;
+                    EnemyTurnStart();
+                }
+                else{
+                    currentState = TurnState.PlayerTurn;
+                    PlayerTurnStart();
+                }
             }
         }
 
-        void Update(){
-            switch(currentState){
-                case TurnState.PlayerTurn:
-                    PlayerTurn();
-                    break;
+        private IEnumerator ShowCanvasForSecounds(Canvas c, int n){
+            c.gameObject.SetActive(true);
+            yield return new WaitForSecondsRealtime(n);
+            c.gameObject.SetActive(false);
+        }
 
-                case TurnState.EnemyTurn:
-                    EnemyTurn();
-                    break;
-
-                case TurnState.Resolve:
-                    Resolve();
-                    break;
+        private void Update(){
+            print($"Turn State = {currentState}");
+            if(currentState == TurnState.PlayerTurn){
+                if (playerHand.PlayedCard == true){
+                    playerHand.PlayedCard = false;
+                    PlayerTurnEnd();         
+                }
             }
         }
     }

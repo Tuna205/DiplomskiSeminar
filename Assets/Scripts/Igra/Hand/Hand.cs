@@ -37,6 +37,17 @@ namespace Scripts.Hand
             }
         }
 
+        private bool _playedCard;
+
+        public bool PlayedCard{
+            get{
+                return _playedCard;
+            }
+            set{
+                _playedCard = value;
+            }
+        }
+
         private void Awake()
         {
             //_hand = cardsInHand.cards;
@@ -91,7 +102,7 @@ namespace Scripts.Hand
         {
             //TODO if go none in hand
             _handIds.Remove(card.Id);
-            print(_handIds.Count);
+            //print(_handIds.Count);
             int siblingIndex = card.transform.GetSiblingIndex();
             Destroy(card.gameObject);
             RearangeCards(siblingIndex);
@@ -110,7 +121,7 @@ namespace Scripts.Hand
             foreach(int i in _handIds){
                 //print($"{this.name} {i}");
             }
-            print($"{this.gameObject.name} last position = {lastCardPosition.x}");
+            //print($"{this.gameObject.name} last position = {lastCardPosition.x}");
 
         }
     }

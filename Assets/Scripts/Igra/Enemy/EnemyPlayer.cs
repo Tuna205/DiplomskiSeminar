@@ -22,7 +22,7 @@ namespace Scripts.Cards
         }
 
         public void DoTurn(){
-            ai.PlayCard();
+            ai.PlayCard(false);
         }
 
         void Update(){

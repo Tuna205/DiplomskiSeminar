@@ -3,6 +3,7 @@ using System;
 using ScriptableObjects.Managers;
 using Scripts.Hand;
 using Scripts.Player;
+using Scripts.GM;
 
 namespace Scripts.Cards{
     [RequireComponent(typeof(SpriteRenderer))]
@@ -13,6 +14,7 @@ namespace Scripts.Cards{
         Hand.Hand hand;
         protected BaseCharacter character;
         public CardData cardData;
+        private GameManager gameManager;
         public abstract bool Ability();
 
         public abstract int Id{get;}
@@ -33,12 +35,15 @@ namespace Scripts.Cards{
         }
 
         public virtual void Awake(){
+            //TODO napravi singleton za gamemanager
+            gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
             Init();
             InitCharacter();
         }
 
         private void Start()
         {
+            //TODO mozda bolje s tagom enemy
             /*
             if (hand.CanPlayCards == false){
                 ShowBack();
@@ -60,16 +65,23 @@ namespace Scripts.Cards{
         {
             //Hand.Hand hand = this.transform.parent.GetComponent<Hand.Hand>();
             if (hand.CanPlayCards == false) return;
-            Play();
+            //Play();
+            gameManager.CardQueue.Add(this);
+            print($"Player added {this.name}");
+            //kazemo ruci da smo igrali kartu
+            hand.PlayedCard = true;
         }
 
         public void Play(){
             print($"Card Hit {this.name}");
+            /* karta moze fizzlat
             if (!Ability())
             {
                 Debug.Log("Ability failed");
                 return;
             }
+            */
+            Ability();
             hand.RemoveCard(this);
         }
 

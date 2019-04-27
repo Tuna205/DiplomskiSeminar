@@ -104,7 +104,7 @@ namespace Scripts.Deck
         }
 
         void Update(){
-            print($"UPDATE Deck has {_deck.Count} cards");
+            //print($"UPDATE Deck has {_deck.Count} cards");
         }
     }
 }

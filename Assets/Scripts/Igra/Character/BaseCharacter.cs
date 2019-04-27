@@ -8,7 +8,7 @@ namespace Scripts.Player
 {
     public abstract class BaseCharacter : MonoBehaviour
     {
-        protected HealthPoints _hp;
+        public HealthPoints _hp;
 
         protected Map.Map _map;
         public CharacterPosition position;
@@ -54,7 +54,7 @@ namespace Scripts.Player
             position.tile = _map.TileMatrix[startPosition.x, startPosition.y];
             position.character = this.gameObject;
             this.transform.position = position.tile.transform.position;
-            _hp = HealthPoints.CreateInstance(5);
+            //_hp = HealthPoints.CreateInstance(5);
         }
     }
 }
