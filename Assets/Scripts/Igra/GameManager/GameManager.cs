@@ -31,8 +31,11 @@ namespace Scripts.GM
 
         private int enemyCardsPlayed = 0;
 
-
-        private bool playerPlayedCard;
+        public List<BaseCard> CardQueue{
+            get{
+                return cardQueue;
+            }
+        }
 
         public void PlayerTurnStart(){
             //StartCoroutine(ShowCanvasForSecounds(PlayerTurnCanvas, 2));
@@ -44,6 +47,7 @@ namespace Scripts.GM
 
         public void PlayerTurnEnd()
         {
+            playerCardsPlayed++;
             playerHand.CanPlayCards = false;
             NextTurnState();
         }
@@ -59,12 +63,13 @@ namespace Scripts.GM
 
         public void EnemyTurnEnd()
         {
+            enemyCardsPlayed++;
             //enemy ai turn
             NextTurnState();
         }
 
         public void Resolve(){
-            
+            //TODO Polagano resolvanje karte po karte
             for(int i = 0; i < cardQueue.Count; i++){
                 cardQueue[i].Ability();
             }
@@ -87,14 +92,12 @@ namespace Scripts.GM
 
             else if(currentState == TurnState.PlayerTurn){
                 currentState = TurnState.EnemyTurn;
-                playerCardsPlayed++;
                 EnemyTurnStart();
             }
 
             else if(currentState == TurnState.EnemyTurn)
             {
                 currentState = TurnState.PlayerTurn;
-                enemyCardsPlayed++;
                 PlayerTurnStart();
             }
             else if(currentState == TurnState.Resolve){
@@ -103,10 +106,12 @@ namespace Scripts.GM
                     
                     currentState = TurnState.EnemyTurn;
                     EnemyTurnStart();
+                    firstTurnPlayer = !firstTurnPlayer;
                 }
                 else{
                     currentState = TurnState.PlayerTurn;
                     PlayerTurnStart();
+                    firstTurnPlayer = !firstTurnPlayer;
                 }
             }
         }
@@ -115,6 +120,21 @@ namespace Scripts.GM
             c.gameObject.SetActive(true);
             yield return new WaitForSecondsRealtime(n);
             c.gameObject.SetActive(false);
+        }
+
+        private void Awake(){
+            cardQueue = new List<BaseCard>();
+        }
+
+        private void Start(){
+            if(firstTurnPlayer == true){
+                this.currentState = TurnState.PlayerTurn;
+                PlayerTurnStart();
+            }
+            else{
+                this.currentState = TurnState.EnemyTurn;
+                EnemyTurnStart();
+            }
         }
 
         private void Update(){

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Map
   - Hand
+  - GameManager
+  - EnemyHand
   layers:
   - Default
   - TransparentFX

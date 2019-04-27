@@ -30,7 +30,7 @@ namespace Scripts.Player
             {
                 if (_hp + n <= 0)
                 {
-                    //Todo Death animation
+                    //TODO Death animation
                     _hp = 0;            
                 }
                 else
@@ -41,7 +41,7 @@ namespace Scripts.Player
             }
             else
             {
-                //Todo healing animacija
+                //TODO healing animacija
                 _hp += n;
             }
             //RenderHp();

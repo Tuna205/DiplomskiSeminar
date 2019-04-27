@@ -78,7 +78,6 @@ namespace Scripts.Hand
                 print("To many cards in hand");
                 return;
             }
-            //TODO kada dodam deck
             List<int> addedCards = _deck.Draw(n);
             _handIds.AddRange(addedCards);
             foreach(int cardId in addedCards){

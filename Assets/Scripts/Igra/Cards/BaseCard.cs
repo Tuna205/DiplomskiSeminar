@@ -44,15 +44,15 @@ namespace Scripts.Cards{
         private void Start()
         {
             //TODO mozda bolje s tagom enemy
-            /*
-            if (hand.CanPlayCards == false){
+            
+            if (hand.CompareTag("EnemyHand")){
                 ShowBack();
             }
             else{
                 ShowFront();
             }
-            */
-            ShowFront();
+            
+            //ShowFront();
         }
 
         private void OnValidate()
@@ -64,16 +64,15 @@ namespace Scripts.Cards{
         public void OnMouseDown()
         {
             //Hand.Hand hand = this.transform.parent.GetComponent<Hand.Hand>();
-            if (hand.CanPlayCards == false) return;
-            //Play();
+            if (hand.CanPlayCards == false) return;  
             gameManager.CardQueue.Add(this);
+            Play(true);
             print($"Player added {this.name}");
             //kazemo ruci da smo igrali kartu
             hand.PlayedCard = true;
         }
 
-        public void Play(){
-            print($"Card Hit {this.name}");
+        public void Play(bool dontTriggerAbility){
             /* karta moze fizzlat
             if (!Ability())
             {
@@ -81,7 +80,9 @@ namespace Scripts.Cards{
                 return;
             }
             */
-            Ability();
+            if(dontTriggerAbility == false){
+                Ability();
+            }
             hand.RemoveCard(this);
         }
 

@@ -33,8 +33,6 @@ namespace Scripts.Deck
         }
 
         private void Start(){
-            //TODO incijaliziraj deck s deckList
-
             this.GetComponent<SpriteRenderer>().sprite = cardBack.artwork;
             
         }
