@@ -68,11 +68,16 @@ namespace Scripts.GM
             NextTurnState();
         }
 
-        public void Resolve(){
-            //TODO Polagano resolvanje karte po karte
-            for(int i = 0; i < cardQueue.Count; i++){
+        private IEnumerator ResolveRutine(){
+            for (int i = 0; i < cardQueue.Count; i++)
+            {
                 cardQueue[i].Ability();
+                yield return new WaitForSecondsRealtime(1);
             }
+            cardQueue.Clear();
+        }
+        public void Resolve(){
+            StartCoroutine(ResolveRutine());
             
             playerHand.Draw(numCardsToPlay);
             enemyHand.Draw(numCardsToPlay);

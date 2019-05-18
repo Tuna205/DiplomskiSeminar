@@ -11,10 +11,10 @@ namespace Scripts.Cards{
     public abstract class BaseCard : MonoBehaviour{
 
         //protected Player.Player player;
-        Hand.Hand hand;
+        protected Hand.Hand hand;
         protected BaseCharacter character;
         public CardData cardData;
-        private GameManager gameManager;
+        protected GameManager gameManager;
         public abstract bool Ability();
 
         public abstract int Id{get;}
@@ -61,7 +61,7 @@ namespace Scripts.Cards{
             Init();
         }
         
-        public void OnMouseDown()
+        public virtual void OnMouseDown()
         {
             //Hand.Hand hand = this.transform.parent.GetComponent<Hand.Hand>();
             if (hand.CanPlayCards == false) return;  

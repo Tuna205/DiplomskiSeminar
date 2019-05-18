@@ -20,8 +20,8 @@ namespace Scripts.Cards
         }
         protected void DmgTile(Vector2Int pos)
         {
-            if (!map.CheckInBounds(pos)) return;
-            Tile tile = map.TileMatrix[pos.x, pos.y];
+            Tile tile = PosToTile(pos);
+            if(tile == null) return;
             map.StartCoroutine(FlashColor(tile, Color.red));
             //koristi Scriptable object
             //TODO malo ljepse
@@ -33,9 +33,13 @@ namespace Scripts.Cards
             if (map.player2Position.tile == tile)
             {
                 map.player2Position.character.GetComponent<BaseCharacter>().Hp.ChangeHp(-dmg);
-            }
-            
-            
+            }        
+        }
+
+        //vraca null ako je pozicija van mape
+        protected Tile PosToTile(Vector2Int pos){
+            if (!map.CheckInBounds(pos)) return null;
+            return map.TileMatrix[pos.x, pos.y];
         }
 
         protected void ChangeColor(Tile tile, Color color)

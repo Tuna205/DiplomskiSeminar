@@ -1,6 +1,7 @@
-﻿using System.Collections;
+﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Scripts.Map{
 
@@ -21,6 +22,19 @@ namespace Scripts.Map{
             get{return _position;}
         }
 
+        private bool _canBeSelected;
+
+        public bool CanBeSelected{
+            get{
+                return _canBeSelected;
+            }
+            set{
+                _canBeSelected = value;
+            }
+        }
+
+        private UnityEvent _onSelectEvent;
+
         //Call this function first
         public void Init(Vector2Int position, Sprite sprite, SelectedTiles selectedTiles){
             _position = position;
@@ -28,6 +42,7 @@ namespace Scripts.Map{
             _spriteRenderer.sprite = sprite;
             _collider = this.GetComponent<Collider2D>();
             _selectedTiles = selectedTiles;
+            _onSelectEvent = new UnityEvent();
         }
 
         public void Select(Color selectColor)
@@ -36,7 +51,6 @@ namespace Scripts.Map{
             _spriteRenderer.color = selectColor;
             //ubaci u listu
             _selectedTiles.Add(this);
-            print(_position);
         }
 
         public void Deselect()
@@ -48,8 +62,11 @@ namespace Scripts.Map{
 
         public void OnMouseDown()
         {
+            if(CanBeSelected == false) return;
             //deselect other tiles
             Select(Color.cyan);
+            //Treba biti event !!!
+            //_onSelectEvent
         }
     }
 }

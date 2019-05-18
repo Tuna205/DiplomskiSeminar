@@ -514,7 +514,7 @@ MonoBehaviour:
   playerHand: {fileID: 585095079}
   enemyHand: {fileID: 1616397264}
   enemy: {fileID: 85038624}
-  firstTurnPlayer: 1
+  firstTurnPlayer: 0
   numCardsToPlay: 3
 --- !u!4 &1172969491
 Transform:
