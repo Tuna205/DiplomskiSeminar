@@ -3,4 +3,4 @@ Kartaška igra u kojoj kartama manipulirate vaš položaj na 2d ploči i pokuša
 Cilj je povezati iskaznicu u proširenoj stvarnosti sa igrom tako da povečali investiciju igrača prema igri.
 
 ![Screenshot](PozicijaNakonShoot.PNG)
-![Screenshot](thumbnail_Ar posjetnica.png)
+![Screenshot](thumbnail_AR posjetnica.png)
