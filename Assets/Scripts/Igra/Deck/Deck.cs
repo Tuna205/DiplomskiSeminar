@@ -9,8 +9,6 @@ namespace Scripts.Deck
 {
     public class Deck : MonoBehaviour
     {
-        //ToDO za tes s klikom
-        public Hand.Hand hand;
         public CardBack cardBack;
         public DeckList deckList;
         private List<int> _deck;
@@ -18,11 +16,7 @@ namespace Scripts.Deck
         private void Init()
         {
             _deck = new List<int>();
-            deckList.startDeckList.ForEach(card =>
-            {
-                card.cardData.cardBack = cardBack;//na startu se dodaje cardBack
-                _deck.Add(card.Id);
-            });
+            deckList.startDeckList.ForEach(card => _deck.Add(card.Id));
             Shuffle();
         }
 
@@ -95,17 +89,17 @@ namespace Scripts.Deck
         }
 
         //TODO samo za test
-        void OnMouseDown()
-        {
-            //Hand.Hand hand = HandManager.Instance.GetComponent<Hand.Hand>();
-            hand.Draw(1);
-            //print($"Deck has {_deck.Count} cards");
-        }
+        //void OnMouseDown()
+        //{
+        //    //Hand.Hand hand = HandManager.Instance.GetComponent<Hand.Hand>();
+        //    hand.Draw(1);
+        //    //print($"Deck has {_deck.Count} cards");
+        //}
 
-        void Update()
-        {
-            //print($"UPDATE Deck has {_deck.Count} cards");
-        }
+        //void Update()
+        //{
+        //    //print($"UPDATE Deck has {_deck.Count} cards");
+        //}
     }
 }
 

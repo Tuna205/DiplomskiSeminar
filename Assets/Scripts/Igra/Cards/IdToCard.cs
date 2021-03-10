@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace Scripts.Cards
 {
-    //[CreateAssetMenu(fileName = "New Id to card", menuName = "ScriptableObjects/Background Sprites")]
     public class IdToCard : ScriptableObject
     {
         private static IdToCard _inst;

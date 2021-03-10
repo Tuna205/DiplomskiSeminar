@@ -13,15 +13,7 @@ namespace Scripts.Cards
             }
         }
 
-        public override void Awake()
-        {
-            base.Awake();
-            //IdToCard.Instance.dict[Id] = this;
-            map = MapManager.Instance.GetComponent<Map.Map>();
-        }
-
         //TODO srediti orijentaciju da puca samo prema protivniku
-        //TODO ne koristiit new
         public override bool Ability()
         {
             DmgTile(character.CurrentTile.Position + new Vector2Int(1, 0));

@@ -15,7 +15,6 @@ namespace Scripts.Hand
         //samo za ucitavanje!
         public bool canPlay;
 
-        //TODO promijeni
         public Deck.Deck _deck;
 
         private List<int> _handIds;
@@ -25,6 +24,7 @@ namespace Scripts.Hand
         public bool CanPlayCards { get; set; }
 
         public bool PlayedCard { get; set; }
+        public CardBack CardBack => cardBack;
 
         private void Awake()
         {

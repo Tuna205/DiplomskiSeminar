@@ -15,11 +15,10 @@ namespace Scripts.AI
 
         public override BaseCard PlayCard(bool dontPlay)
         {
-            System.Random rng = new System.Random();
             if (_hand.NumOfCards() == 0) return null; //TODO VELIKI OPREZ??
-            int rand = rng.Next(0, _hand.NumOfCards() - 1);
+            int rand = UnityEngine.Random.Range(0, _hand.NumOfCards() - 1);
             BaseCard card = _hand.transform.GetChild(rand).GetComponent<BaseCard>();
-            Debug.Log($"Enemy plays: ");
+            Debug.Log($"Enemy plays: {card.name}");
             card.Play(dontPlay);
             Debug.Log($"Enemy added {card.name}");
             return card;

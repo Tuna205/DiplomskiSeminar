@@ -55,8 +55,6 @@ namespace Scripts.Cards
             {
                 ShowFront();
             }
-
-            //ShowFront();
         }
 
         private void OnValidate()
@@ -76,7 +74,7 @@ namespace Scripts.Cards
             hand.PlayedCard = true;
         }
 
-        public void Play(bool dontTriggerAbility)
+        public void Play(bool dontTriggerAbility)//zašto postoji ovaj modifier??
         {
             /* karta moze fizzlat
             if (!Ability())
@@ -99,7 +97,7 @@ namespace Scripts.Cards
 
         public void ShowBack()
         {
-            this.GetComponent<SpriteRenderer>().sprite = cardData.cardBack.artwork;
+            this.GetComponent<SpriteRenderer>().sprite = hand.CardBack.artwork;
         }
     }
 }

@@ -9,6 +9,6 @@ namespace Scripts.Cards
         public new string name;
         public string description;
         public Sprite artwork;
-        public CardBack cardBack;
+        //public CardBack cardBack;
     }
 }

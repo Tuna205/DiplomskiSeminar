@@ -11,7 +11,7 @@ namespace Scripts.Cards
                 return 12;
             }
         }
-        //TODO ne koristi new
+
         public override bool Ability()
         {
             DmgTile(character.CurrentTile.Position + new Vector2Int(1, 1));

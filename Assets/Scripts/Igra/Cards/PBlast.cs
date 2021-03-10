@@ -11,7 +11,6 @@ namespace Scripts.Cards
                 return 11;
             }
         }
-        //TODO ne koristiit new
 
         public override bool Ability()
         {

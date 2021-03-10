@@ -7,7 +7,6 @@ namespace Scripts.Cards
     public class EnemyPlayer : BaseCharacter
     {
         public Hand.Hand hand;
-        //public GameManager gm;
 
         public EnemyAi ai;
 
