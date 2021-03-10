@@ -1,4 +1,3 @@
-using Scripts.Map;
 using UnityEngine;
 
 namespace Scripts.Cards

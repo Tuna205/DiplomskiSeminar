@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ScriptableObjects.Managers
 {
     [CreateAssetMenu(fileName = "New Background Sprites", menuName = "ScriptableObjects/Background Sprites")]
-    public class BackgroundSpriteManager : ScriptableObject{
+    public class BackgroundSpriteManager : ScriptableObject
+    {
         public Sprite topRight;
         public Sprite topCenter;
         public Sprite topLeft;

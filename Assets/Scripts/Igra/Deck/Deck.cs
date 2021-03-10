@@ -1,11 +1,9 @@
+using ScriptableObjects.Cards;
+using Scripts.Cards;
 using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
-using Scripts.Deck;
-using Scripts.Cards;
-using ScriptableObjects.Managers;
-using ScriptableObjects.Cards;
 
 namespace Scripts.Deck
 {
@@ -17,7 +15,8 @@ namespace Scripts.Deck
         public DeckList deckList;
         private List<int> _deck;
 
-        private void Init(){
+        private void Init()
+        {
             _deck = new List<int>();
             deckList.startDeckList.ForEach(card =>
             {
@@ -32,9 +31,10 @@ namespace Scripts.Deck
             Init();
         }
 
-        private void Start(){
+        private void Start()
+        {
             this.GetComponent<SpriteRenderer>().sprite = cardBack.artwork;
-            
+
         }
 
         //zovi samo iz Hand.Draw
@@ -95,16 +95,17 @@ namespace Scripts.Deck
         }
 
         //TODO samo za test
-        void OnMouseDown(){
+        void OnMouseDown()
+        {
             //Hand.Hand hand = HandManager.Instance.GetComponent<Hand.Hand>();
             hand.Draw(1);
             //print($"Deck has {_deck.Count} cards");
         }
 
-        void Update(){
+        void Update()
+        {
             //print($"UPDATE Deck has {_deck.Count} cards");
         }
     }
 }
 
-        

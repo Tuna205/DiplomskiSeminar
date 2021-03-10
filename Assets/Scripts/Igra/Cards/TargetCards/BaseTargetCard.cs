@@ -1,10 +1,7 @@
-using System.Collections;
-using UnityEngine;
-using Scripts.Cards;
 using Scripts.Map;
-using ScriptableObjects.Managers;
-using Scripts.Player;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Scripts.Cards
 {
@@ -21,20 +18,23 @@ namespace Scripts.Cards
 
         protected Tile selectedTile;
 
-        public override void Awake(){
+        public override void Awake()
+        {
             base.Awake();
             canSelectTiles = new List<Tile>();
         }
 
         //protected Vector2Int selectedTileRelative;
-        public override void OnMouseDown(){
+        public override void OnMouseDown()
+        {
             if (hand.CanPlayCards == false) return;
             gameManager.CardQueue.Add(this);
             // na kraju korutine se unisti karta
             //StartCorutine(WaitForPlayerSelect());
         }
 
-        private IEnumerator WaitForPlayerSelect(){
+        private IEnumerator WaitForPlayerSelect()
+        {
             ShowPlayableSquares();
             //check if player selected one of them
             /* bez WaitUntil
@@ -57,7 +57,8 @@ namespace Scripts.Cards
             UnmarkTilesSelected();
         }
 
-        protected void MarkTilesSelectable(Vector2Int pos){
+        protected void MarkTilesSelectable(Vector2Int pos)
+        {
             Tile tile = PosToTile(pos);
             if (tile == null) return;
 
@@ -66,8 +67,10 @@ namespace Scripts.Cards
             tile.CanBeSelected = true;
         }
 
-        protected void UnmarkTilesSelected(){
-            foreach(Tile t in canSelectTiles){
+        protected void UnmarkTilesSelected()
+        {
+            foreach (Tile t in canSelectTiles)
+            {
                 t.CanBeSelected = false;
             }
             canSelectTiles.Clear();

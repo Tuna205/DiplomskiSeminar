@@ -1,9 +1,8 @@
+using ScriptableObjects.Managers;
+using Scripts.Map;
+using Scripts.Player;
 using System.Collections;
 using UnityEngine;
-using Scripts.Cards;
-using Scripts.Map;
-using ScriptableObjects.Managers;
-using Scripts.Player;
 
 namespace Scripts.Cards
 {
@@ -13,7 +12,8 @@ namespace Scripts.Cards
         protected Map.Map map;
         public int dmg = 1;
 
-        public override void Awake(){
+        public override void Awake()
+        {
             base.Awake();
             //IdToCard.Instance.dict[Id] = this;
             map = MapManager.Instance.GetComponent<Map.Map>();
@@ -21,11 +21,11 @@ namespace Scripts.Cards
         protected void DmgTile(Vector2Int pos)
         {
             Tile tile = PosToTile(pos);
-            if(tile == null) return;
+            if (tile == null) return;
             map.StartCoroutine(FlashColor(tile, Color.red));
             //koristi Scriptable object
             //TODO malo ljepse
-            if(map.player1Position.tile == tile)
+            if (map.player1Position.tile == tile)
             {
                 map.player1Position.character.GetComponent<BaseCharacter>().Hp.ChangeHp(-dmg);
             }
@@ -33,11 +33,12 @@ namespace Scripts.Cards
             if (map.player2Position.tile == tile)
             {
                 map.player2Position.character.GetComponent<BaseCharacter>().Hp.ChangeHp(-dmg);
-            }        
+            }
         }
 
         //vraca null ako je pozicija van mape
-        protected Tile PosToTile(Vector2Int pos){
+        protected Tile PosToTile(Vector2Int pos)
+        {
             if (!map.CheckInBounds(pos)) return null;
             return map.TileMatrix[pos.x, pos.y];
         }

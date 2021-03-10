@@ -1,8 +1,6 @@
-using System.Collections;
-using UnityEngine;
-using Scripts.Player;
-using Scripts.Map;
 using ScriptableObjects.Managers;
+using Scripts.Map;
+using UnityEngine;
 
 namespace Scripts.Player
 {
@@ -17,8 +15,10 @@ namespace Scripts.Player
         public int maxHp;
         public Vector2Int startPosition;
 
-        public HealthPoints Hp{
-            get{
+        public HealthPoints Hp
+        {
+            get
+            {
                 return _hp;
             }
         }

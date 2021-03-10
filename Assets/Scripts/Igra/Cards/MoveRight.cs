@@ -4,8 +4,10 @@ namespace Scripts.Cards
 {
     class MoveRight : BaseCard
     {
-        public override int Id{
-            get{
+        public override int Id
+        {
+            get
+            {
                 return 1;
             }
         }

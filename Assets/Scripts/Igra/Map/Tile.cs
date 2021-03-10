@@ -1,9 +1,8 @@
-﻿ using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
-namespace Scripts.Map{
+namespace Scripts.Map
+{
 
     [RequireComponent(typeof(SpriteRenderer))]
     [RequireComponent(typeof(Collider2D))]
@@ -18,17 +17,21 @@ namespace Scripts.Map{
         private SelectedTiles _selectedTiles;
         private Vector2Int _position;
 
-        public Vector2Int Position{
-            get{return _position;}
+        public Vector2Int Position
+        {
+            get { return _position; }
         }
 
         private bool _canBeSelected;
 
-        public bool CanBeSelected{
-            get{
+        public bool CanBeSelected
+        {
+            get
+            {
                 return _canBeSelected;
             }
-            set{
+            set
+            {
                 _canBeSelected = value;
             }
         }
@@ -36,7 +39,8 @@ namespace Scripts.Map{
         private UnityEvent _onSelectEvent;
 
         //Call this function first
-        public void Init(Vector2Int position, Sprite sprite, SelectedTiles selectedTiles){
+        public void Init(Vector2Int position, Sprite sprite, SelectedTiles selectedTiles)
+        {
             _position = position;
             _spriteRenderer = this.GetComponent<SpriteRenderer>();
             _spriteRenderer.sprite = sprite;
@@ -62,7 +66,7 @@ namespace Scripts.Map{
 
         public void OnMouseDown()
         {
-            if(CanBeSelected == false) return;
+            if (CanBeSelected == false) return;
             //deselect other tiles
             Select(Color.cyan);
             //Treba biti event !!!

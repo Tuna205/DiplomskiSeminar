@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using ScriptableObjects.Managers;
+using UnityEngine;
 
 namespace Scripts.Map
 {
@@ -22,7 +20,7 @@ namespace Scripts.Map
 
         //public ObstacleList obstacleList;
 
-        
+
         private Tile[,] _tileMatrix;
         //za 4x4 dobro je (-2,4,0)
         private Vector3 _startCoordinates;
@@ -30,13 +28,16 @@ namespace Scripts.Map
 
         private SelectedTiles _selectedTiles;
 
-        public Tile[,] TileMatrix{
-            get{
+        public Tile[,] TileMatrix
+        {
+            get
+            {
                 return _tileMatrix;
             }
         }
 
-        private void Awake(){
+        private void Awake()
+        {
             _tileMatrix = new Tile[sizeX, sizeY];
             //_startCoordinates = new Vector3(-9f, 4.5f, 0f);
             _selectedTiles = SelectedTiles.CreateInstance();
@@ -54,9 +55,9 @@ namespace Scripts.Map
                 {
                     GameObject go = GameObject.Instantiate(tilePrefab, _currentCoordinates, Quaternion.identity, this.transform);
                     Tile newTile = go.GetComponent<Tile>();
-                    Sprite sprite = FindTileSprite(i,j);
-                    newTile.Init(new Vector2Int(i,j), sprite, _selectedTiles);
-                    _tileMatrix[i,j] = newTile;
+                    Sprite sprite = FindTileSprite(i, j);
+                    newTile.Init(new Vector2Int(i, j), sprite, _selectedTiles);
+                    _tileMatrix[i, j] = newTile;
                     _currentCoordinates.x += _tileSize.x;
                 }
                 _currentCoordinates.x -= _tileSize.x * sizeY;
@@ -78,12 +79,13 @@ namespace Scripts.Map
         }
 
 
-        private Sprite FindTileSprite(int x, int y){
-            if(x==0 && y==0) return backgroundSpriteManager.topLeft;
-            if(x==0 && y == sizeY - 1) return backgroundSpriteManager.topRight;
-            if(x==0) return backgroundSpriteManager.topCenter;
+        private Sprite FindTileSprite(int x, int y)
+        {
+            if (x == 0 && y == 0) return backgroundSpriteManager.topLeft;
+            if (x == 0 && y == sizeY - 1) return backgroundSpriteManager.topRight;
+            if (x == 0) return backgroundSpriteManager.topCenter;
 
-            if (x == sizeX-1 && y == 0) return backgroundSpriteManager.bottomLeft;
+            if (x == sizeX - 1 && y == 0) return backgroundSpriteManager.bottomLeft;
             if (x == sizeX - 1 && y == sizeY - 1) return backgroundSpriteManager.bottomRight;
             if (x == sizeX - 1) return backgroundSpriteManager.bottomCenter;
 

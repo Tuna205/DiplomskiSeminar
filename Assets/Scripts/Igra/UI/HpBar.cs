@@ -2,7 +2,8 @@ using Scripts.Player;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.UI{
+namespace Assets.UI
+{
     public class HpBar : MonoBehaviour
     {
         public HealthPoints hp;
@@ -16,12 +17,9 @@ namespace Assets.UI{
         }
 
         //UI slider value se rendera samo na change valuea  
-        void Update(){
+        void Update()
+        {
             hpbar.value = hp.Hp;
         }
-        
-
-
-
     }
 }

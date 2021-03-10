@@ -1,14 +1,13 @@
-using UnityEngine;
-using System;
-using ScriptableObjects.Managers;
-using Scripts.Hand;
-using Scripts.Player;
 using Scripts.GM;
+using Scripts.Player;
+using UnityEngine;
 
-namespace Scripts.Cards{
+namespace Scripts.Cards
+{
     [RequireComponent(typeof(SpriteRenderer))]
     [RequireComponent(typeof(BoxCollider2D))]
-    public abstract class BaseCard : MonoBehaviour{
+    public abstract class BaseCard : MonoBehaviour
+    {
 
         //protected Player.Player player;
         protected Hand.Hand hand;
@@ -17,24 +16,27 @@ namespace Scripts.Cards{
         protected GameManager gameManager;
         public abstract bool Ability();
 
-        public abstract int Id{get;}
-        protected void Init(){
+        public abstract int Id { get; }
+        protected void Init()
+        {
             //player = PlayerManager.Instance.GetComponent<Player.Player>();
-            
+
             this.name = cardData.name;
 
             IdToCard.Instance.dict[Id] = this;
             //TODO setup collider width/height
         }
-        
-        protected void InitCharacter(){
+
+        protected void InitCharacter()
+        {
             hand = this.transform.parent.GetComponent<Hand.Hand>();
 
             character = hand.character;
 
         }
 
-        public virtual void Awake(){
+        public virtual void Awake()
+        {
             //TODO napravi singleton za gamemanager
             gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
             Init();
@@ -44,14 +46,16 @@ namespace Scripts.Cards{
         private void Start()
         {
             //TODO mozda bolje s tagom enemy
-            
-            if (hand.CompareTag("EnemyHand")){
+
+            if (hand.CompareTag("EnemyHand"))
+            {
                 ShowBack();
             }
-            else{
+            else
+            {
                 ShowFront();
             }
-            
+
             //ShowFront();
         }
 
@@ -60,11 +64,11 @@ namespace Scripts.Cards{
             //HACK problem jer se validate izvoid za ucitavanja u decklist kad jos nemamo parenta
             Init();
         }
-        
+
         public virtual void OnMouseDown()
         {
             //Hand.Hand hand = this.transform.parent.GetComponent<Hand.Hand>();
-            if (hand.CanPlayCards == false) return;  
+            if (hand.CanPlayCards == false) return;
             gameManager.CardQueue.Add(this);
             Play(true);
             print($"Player added {this.name}");
@@ -72,7 +76,8 @@ namespace Scripts.Cards{
             hand.PlayedCard = true;
         }
 
-        public void Play(bool dontTriggerAbility){
+        public void Play(bool dontTriggerAbility)
+        {
             /* karta moze fizzlat
             if (!Ability())
             {
@@ -80,17 +85,20 @@ namespace Scripts.Cards{
                 return;
             }
             */
-            if(dontTriggerAbility == false){
+            if (dontTriggerAbility == false)
+            {
                 Ability();
             }
             hand.RemoveCard(this);
         }
 
-        public void ShowFront(){
+        public void ShowFront()
+        {
             this.GetComponent<SpriteRenderer>().sprite = cardData.artwork;
         }
 
-        public void ShowBack(){
+        public void ShowBack()
+        {
             this.GetComponent<SpriteRenderer>().sprite = cardData.cardBack.artwork;
         }
     }

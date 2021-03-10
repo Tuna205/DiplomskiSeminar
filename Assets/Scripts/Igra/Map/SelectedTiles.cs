@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using ScriptableObjects.Managers;
-using Map.Interfaces;
 
 namespace Scripts.Map
 {
@@ -21,11 +19,13 @@ namespace Scripts.Map
             return objs;
         }
 
-        public void Add(Tile position){
+        public void Add(Tile position)
+        {
             selectedTiles.Add(position);
         }
 
-        public void Remove(Tile position){
+        public void Remove(Tile position)
+        {
             selectedTiles.Remove(position);
         }
 

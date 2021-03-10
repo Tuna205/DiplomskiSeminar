@@ -8,18 +8,23 @@ namespace Scripts.Player
         private int _hp;
         public int maxHp;
 
-        public int MaxHp{
-            get{
+        public int MaxHp
+        {
+            get
+            {
                 return maxHp;
             }
         }
-        public int Hp{
-            get{
+        public int Hp
+        {
+            get
+            {
                 return _hp;
             }
         }
         //radi kao start, awake se samo poziva kada se objekt stvara (asseti se stvaraju samo jednom i ne stvaraju se opet na restart igre)
-        private void OnEnable(){
+        private void OnEnable()
+        {
             _hp = maxHp;
         }
 
@@ -31,7 +36,7 @@ namespace Scripts.Player
                 if (_hp + n <= 0)
                 {
                     //TODO Death animation
-                    _hp = 0;            
+                    _hp = 0;
                 }
                 else
                 {

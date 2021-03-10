@@ -1,6 +1,6 @@
-using UnityEngine;
-using System.Collections.Generic;
 using Scripts.Cards;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Scripts.Deck
 {

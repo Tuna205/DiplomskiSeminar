@@ -1,11 +1,6 @@
-using System.Collections;
-using UnityEngine;
-using Scripts.Player;
-using Scripts.Map;
-using ScriptableObjects.Managers;
-using Scripts.Deck;
-using Scripts.GM;
 using Scripts.AI;
+using Scripts.Player;
+using UnityEngine;
 
 namespace Scripts.Cards
 {
@@ -16,17 +11,21 @@ namespace Scripts.Cards
 
         public EnemyAi ai;
 
-        private new void Awake(){
+        private new void Awake()
+        {
             base.Awake();
             ai.Init(hand);
         }
 
-        public void DoTurn(){
+        public void DoTurn()
+        {
             ai.PlayCard(false);
         }
 
-        void Update(){
-            if(Input.GetKeyDown(KeyCode.Space)){
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
                 DoTurn();
             }
         }

@@ -1,4 +1,3 @@
-using System.Collections;
 using Scripts.Cards;
 using UnityEngine;
 

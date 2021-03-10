@@ -1,9 +1,8 @@
-using UnityEngine;
-using System.Collections.Generic;
+using ScriptableObjects.Cards;
 using Scripts.Cards;
 using Scripts.Player;
-using ScriptableObjects.Cards;
-using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Scripts.Hand
 {
@@ -27,23 +26,29 @@ namespace Scripts.Hand
         //public CardsInHand cardsInHand;
         private bool _canPlayCards;
 
-        public bool CanPlayCards{
-            get{
+        public bool CanPlayCards
+        {
+            get
+            {
                 return _canPlayCards;
             }
 
-            set{
+            set
+            {
                 _canPlayCards = value;
             }
         }
 
         private bool _playedCard;
 
-        public bool PlayedCard{
-            get{
+        public bool PlayedCard
+        {
+            get
+            {
                 return _playedCard;
             }
-            set{
+            set
+            {
                 _playedCard = value;
             }
         }
@@ -67,11 +72,13 @@ namespace Scripts.Hand
 
         }
 
-        public int NumOfCards(){
+        public int NumOfCards()
+        {
             return _handIds.Count;
         }
 
-        public void Draw(int n){
+        public void Draw(int n)
+        {
             if (_handIds.Count + n > maxCards)
             {
                 //TODO discard cards
@@ -80,13 +87,15 @@ namespace Scripts.Hand
             }
             List<int> addedCards = _deck.Draw(n);
             _handIds.AddRange(addedCards);
-            foreach(int cardId in addedCards){
+            foreach (int cardId in addedCards)
+            {
                 InstantiateCard(IdToCard.Instance.dict[cardId]);
             }
         }
 
         //Uses localCardPosition for instantiate postion
-        private void InstantiateCard(BaseCard card){
+        private void InstantiateCard(BaseCard card)
+        {
             //ako player nemoze igrat karte onda prikazi backside
             /*
             if(CanPlayCards == false){
@@ -108,16 +117,20 @@ namespace Scripts.Hand
         }
 
         //need number of cards and card child count from hand parent
-        private void RearangeCards(int destroyedSiblingIndex){
-            foreach(Transform t in this.transform){
-                if(t.GetSiblingIndex() < destroyedSiblingIndex) continue;
+        private void RearangeCards(int destroyedSiblingIndex)
+        {
+            foreach (Transform t in this.transform)
+            {
+                if (t.GetSiblingIndex() < destroyedSiblingIndex) continue;
                 t.transform.position -= new Vector3(3, 0, 0);
             }
             lastCardPosition -= new Vector3(3, 0, 0);
         }
 
-        private void Update(){
-            foreach(int i in _handIds){
+        private void Update()
+        {
+            foreach (int i in _handIds)
+            {
                 //print($"{this.name} {i}");
             }
             //print($"{this.gameObject.name} last position = {lastCardPosition.x}");

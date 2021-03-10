@@ -1,5 +1,7 @@
-namespace Map.Interfaces{
-    public interface IBomb{
+namespace Map.Interfaces
+{
+    public interface IBomb
+    {
 
     }
 }

@@ -1,5 +1,5 @@
-using UnityEngine;
 using ScriptableObjects.Managers;
+using UnityEngine;
 
 namespace Scripts.Cards
 {
