@@ -12,25 +12,15 @@ namespace Scripts.Map
         public GameObject tilePrefab;
 
         private Tile[,] _tileMatrix;
-        //za 4x4 dobro je (-2,4,0)
-        private Vector3 _startCoordinates;
+        private Vector3 _startCoordinates; //za 4x4 dobro je (-2,4,0)
         private Vector2 _tileSize;
 
-        private SelectedTiles _selectedTiles;
-
-        public Tile[,] TileMatrix
-        {
-            get
-            {
-                return _tileMatrix;
-            }
-        }
+        public Tile[,] TileMatrix => _tileMatrix;
 
         private void Awake()
         {
             _tileMatrix = new Tile[sizeX, sizeY];
             //_startCoordinates = new Vector3(-9f, 4.5f, 0f);
-            _selectedTiles = SelectedTiles.Instance;
             Vector3 tmp = this.transform.localScale;
             _tileSize = new Vector2(tmp.x * 0.32f, tmp.y * 0.32f);
             SetupMap();
