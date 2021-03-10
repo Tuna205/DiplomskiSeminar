@@ -1,10 +1,11 @@
-using Scripts.Map;
+﻿using Scripts.Map;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Scripts.Cards
 {
+    //TODO čemu služi tile can be selected???
     //TODO nes za slusanje eventova od tileova
     public abstract class BaseTargetCard : BaseAttackCard
     {

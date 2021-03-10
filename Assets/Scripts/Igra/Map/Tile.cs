@@ -62,7 +62,6 @@ namespace Scripts.Map
         {
             if (CanBeSelected == false) return;
 
-            //deselect other tiles
             Select(Color.cyan);
             onSelected?.Invoke(Position);
         }

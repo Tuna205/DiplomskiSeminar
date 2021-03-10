@@ -7,8 +7,7 @@ namespace Scripts.LevelObjects
     public abstract class BaseCharacter : LevelObject
     {
         public HealthPoints _hp;
-        public PlayerBombs enemyBombs;//?
-        public int maxHp;//?
+        public PlayerBombs enemyBombs;//? kad se makne makni PlayerBombs
 
         public HealthPoints Hp => _hp;
 
@@ -40,7 +39,6 @@ namespace Scripts.LevelObjects
         {
             MoveToTileLogic(startPosition);
             this.transform.position = _currentTile.transform.position;
-            //_hp = HealthPoints.CreateInstance(5);
         }
     }
 }

@@ -8,6 +8,7 @@ namespace Assets.UI
     {
         public HealthPoints hp;
         private Slider hpbar;
+
         void Awake()
         {
             hpbar = this.GetComponent<Slider>();
@@ -16,10 +17,20 @@ namespace Assets.UI
             hpbar.wholeNumbers = true;
         }
 
-        //UI slider value se rendera samo na change valuea  
-        void Update()
+        private void Start()
         {
-            hpbar.value = hp.Hp;
+            hp.onHpChanged += UpdateBar;
+            UpdateBar(hp.maxHp);
+        }
+ 
+        void UpdateBar(int hpValue)
+        {
+            hpbar.value = hpValue;
+        }
+
+        private void OnDestroy()
+        {
+            hp.onHpChanged -= UpdateBar;
         }
     }
 }

@@ -9,7 +9,6 @@ namespace Scripts.Hand
     public class Hand : MonoBehaviour
     {
         public CardBack cardBack;
-        //nazalost treba da karte znaju cije su
         public BaseCharacter character;
         public int maxCards = 5;
 
@@ -23,41 +22,15 @@ namespace Scripts.Hand
 
         private Vector3 lastCardPosition;
 
-        //public CardsInHand cardsInHand;
-        private bool _canPlayCards;
+        public bool CanPlayCards { get; set; }
 
-        public bool CanPlayCards
-        {
-            get
-            {
-                return _canPlayCards;
-            }
-
-            set
-            {
-                _canPlayCards = value;
-            }
-        }
-
-        private bool _playedCard;
-
-        public bool PlayedCard
-        {
-            get
-            {
-                return _playedCard;
-            }
-            set
-            {
-                _playedCard = value;
-            }
-        }
+        public bool PlayedCard { get; set; }
 
         private void Awake()
         {
             //_hand = cardsInHand.cards;
             _handIds = new List<int>();
-            _canPlayCards = canPlay;
+            CanPlayCards = canPlay;
         }
 
         private void Start()
@@ -127,14 +100,14 @@ namespace Scripts.Hand
             lastCardPosition -= new Vector3(3, 0, 0);
         }
 
-        private void Update()
-        {
-            foreach (int i in _handIds)
-            {
-                //print($"{this.name} {i}");
-            }
-            //print($"{this.gameObject.name} last position = {lastCardPosition.x}");
+        //private void Update()
+        //{
+        //    foreach (int i in _handIds)
+        //    {
+        //        //print($"{this.name} {i}");
+        //    }
+        //    //print($"{this.gameObject.name} last position = {lastCardPosition.x}");
 
-        }
+        //}
     }
 }

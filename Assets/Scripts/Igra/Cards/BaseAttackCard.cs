@@ -24,18 +24,6 @@ namespace Scripts.Cards
             Tile tile = PosToTile(pos);
             if (tile == null) return;
             map.StartCoroutine(FlashColor(tile, Color.red));
-            //koristi Scriptable object
-            //TODO malo ljepse
-            //if (map.player1Position.tile == tile)
-            //{
-            //    map.player1Position.character.GetComponent<BaseCharacter>().Hp.ChangeHp(-dmg);
-            //}
-
-            //if (map.player2Position.tile == tile)
-            //{
-            //    map.player2Position.character.GetComponent<BaseCharacter>().Hp.ChangeHp(-dmg);
-            //}
-
             List<LevelObject> objectsOnTile = tile.ObjectsOnTile.FindAll(lo => lo is BaseCharacter);
             objectsOnTile.ForEach(lo => (lo as BaseCharacter).Hp.ChangeHp(-dmg));
         }

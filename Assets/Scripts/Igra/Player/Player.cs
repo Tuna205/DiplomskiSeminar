@@ -4,7 +4,6 @@ namespace Scripts.LevelObjects
 {
     public class Player : BaseCharacter
     {
-
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.W))

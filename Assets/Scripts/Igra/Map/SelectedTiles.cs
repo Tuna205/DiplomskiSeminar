@@ -5,7 +5,7 @@ namespace Scripts.Map
 {
     public class SelectedTiles
     {
-        public List<Tile> selectedTiles;
+        private List<Tile> selectedTiles;
 
         private static SelectedTiles _instance = null;
         public static SelectedTiles Instance

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Scripts.LevelObjects
@@ -8,32 +9,23 @@ namespace Scripts.LevelObjects
         private int _hp;
         public int maxHp;
 
-        public int MaxHp
-        {
-            get
-            {
-                return maxHp;
-            }
-        }
-        public int Hp
-        {
-            get
-            {
-                return _hp;
-            }
-        }
+        public int MaxHp => maxHp;
+        public int Hp => _hp;
+
+        public Action<int> onHpChanged;
+
         //radi kao start, awake se samo poziva kada se objekt stvara (asseti se stvaraju samo jednom i ne stvaraju se opet na restart igre)
         private void OnEnable()
         {
             _hp = maxHp;
         }
 
-        public void ChangeHp(int n)
+        public void ChangeHp(int dmg)
         {
-            bool isDmg = n < 0;
+            bool isDmg = dmg < 0;
             if (isDmg)
             {
-                if (_hp + n <= 0)
+                if (_hp + dmg <= 0)
                 {
                     //TODO Death animation
                     _hp = 0;
@@ -41,29 +33,15 @@ namespace Scripts.LevelObjects
                 else
                 {
                     //TODO dmg animacija
-                    _hp += n;
+                    _hp += dmg;
                 }
             }
             else
             {
                 //TODO healing animacija
-                _hp += n;
+                _hp += dmg;
             }
-            //RenderHp();
+            onHpChanged?.Invoke(_hp);
         }
-        /*
-        private void Init(int maxHp)
-        {
-            this.maxHp = maxHp;
-            this._hp = maxHp;
-        }
-
-        public static HealthPoints CreateInstance(int maxHp)
-        {
-            var data = ScriptableObject.CreateInstance<HealthPoints>();
-            data.Init(maxHp);
-            return data;
-        }
-        */
     }
 }
