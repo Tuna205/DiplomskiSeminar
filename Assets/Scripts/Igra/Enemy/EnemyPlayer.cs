@@ -1,5 +1,5 @@
 using Scripts.AI;
-using Scripts.Player;
+using Scripts.LevelObjects;
 using UnityEngine;
 
 namespace Scripts.Cards

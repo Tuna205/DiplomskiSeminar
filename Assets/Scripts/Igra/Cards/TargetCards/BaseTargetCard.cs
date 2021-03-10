@@ -49,7 +49,7 @@ namespace Scripts.Cards
             }
             */
             yield return new WaitUntil(() => selectedTile != null);
-            Vector2Int selectedTileRelative = selectedTile.Position - character.position.tile.Position;
+            Vector2Int selectedTileRelative = selectedTile.Position - character.CurrentTile.Position;
             Ability(selectedTileRelative);
 
             hand.RemoveCard(this);

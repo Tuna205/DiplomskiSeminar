@@ -1,6 +1,7 @@
 using Map.Interfaces;
 using System.Collections.Generic;
 using UnityEngine;
+using Scripts.LevelObjects;
 
 namespace Scripts.Map
 {
@@ -11,7 +12,7 @@ namespace Scripts.Map
         public List<IBomb> player1Bombs;
         public List<IBomb> player2Bombs;
 
-        public Player.Player playerOnTile;
+        public Player playerOnTile;
 
         public IObstacle obstacle;
 

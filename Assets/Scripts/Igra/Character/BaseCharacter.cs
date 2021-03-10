@@ -2,45 +2,32 @@ using ScriptableObjects.Managers;
 using Scripts.Map;
 using UnityEngine;
 
-namespace Scripts.Player
+namespace Scripts.LevelObjects
 {
-    public abstract class BaseCharacter : MonoBehaviour
+    public abstract class BaseCharacter : LevelObject
     {
         public HealthPoints _hp;
+        public PlayerBombs enemyBombs;//?
+        public int maxHp;//?
 
-        protected Map.Map _map;
-        public CharacterPosition position;
+        public HealthPoints Hp => _hp;
 
-        public PlayerBombs enemyBombs;
-        public int maxHp;
-        public Vector2Int startPosition;
-
-        public HealthPoints Hp
+        private bool MoveToTileLogic(Vector2Int newPos)
         {
-            get
-            {
-                return _hp;
-            }
+            if (!_map.CheckInBounds(newPos)) { return false; }
+            _currentTile?.RemoveFromTile(this);
+            _currentTile = _map.TileMatrix[newPos.x, newPos.y];
+            _currentTile.AddToTile(this);
+            return true;
         }
 
         public bool MoveToTile(Vector2Int newPos)
         {
-            if (!_map.CheckInBounds(newPos))
-            {
-                Debug.Log($"Position {newPos} is out of bounds");
-                return false;
-            }
-            /* If occupied
-            if (_map.TileMatrix[(int)newPos.x, (int)newPos.y].GetCharacter() != null)
-            {
-                Debug.Log($"Position {newPos} is ocupied");
-                return false;
-            }
-            */
+            bool success = MoveToTileLogic(newPos);
+            if (!success) return false;
 
-            position.tile = _map.TileMatrix[newPos.x, newPos.y];
             //TODO make movement animation
-            this.transform.position = position.tile.transform.position;
+            this.transform.position = _currentTile.transform.position;
             return true;
         }
 
@@ -51,9 +38,8 @@ namespace Scripts.Player
 
         protected void Start()
         {
-            position.tile = _map.TileMatrix[startPosition.x, startPosition.y];
-            position.character = this.gameObject;
-            this.transform.position = position.tile.transform.position;
+            MoveToTileLogic(startPosition);
+            this.transform.position = _currentTile.transform.position;
             //_hp = HealthPoints.CreateInstance(5);
         }
     }

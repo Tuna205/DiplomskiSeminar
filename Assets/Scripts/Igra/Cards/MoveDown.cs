@@ -17,7 +17,7 @@ namespace Scripts.Cards
         }
         public override bool Ability()
         {
-            return character.MoveToTile(character.position.tile.Position + new Vector2Int(1, 0));
+            return character.MoveToTile(character.CurrentTile.Position + new Vector2Int(1, 0));
         }
     }
 }

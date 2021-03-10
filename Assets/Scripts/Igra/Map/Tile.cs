@@ -1,40 +1,23 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Events;
+using Scripts.LevelObjects;
 
 namespace Scripts.Map
 {
-
     [RequireComponent(typeof(SpriteRenderer))]
     [RequireComponent(typeof(Collider2D))]
     public class Tile : MonoBehaviour
     {
-        //image of the tile
         private SpriteRenderer _spriteRenderer;
-        //collider for selecting this tile
         private Collider2D _collider;
-        //saves data from objects on this tile
-
         private SelectedTiles _selectedTiles;
         private Vector2Int _position;
+        private List<LevelObject> _objectsOnTile = new List<LevelObject>();
 
-        public Vector2Int Position
-        {
-            get { return _position; }
-        }
-
-        private bool _canBeSelected;
-
-        public bool CanBeSelected
-        {
-            get
-            {
-                return _canBeSelected;
-            }
-            set
-            {
-                _canBeSelected = value;
-            }
-        }
+        public Vector2Int Position => _position;
+        public bool CanBeSelected { get; set; }
+        public List<LevelObject> ObjectsOnTile => _objectsOnTile;
 
         private UnityEvent _onSelectEvent;
 
@@ -47,6 +30,19 @@ namespace Scripts.Map
             _collider = this.GetComponent<Collider2D>();
             _selectedTiles = selectedTiles;
             _onSelectEvent = new UnityEvent();
+        }
+
+        public void AddToTile(LevelObject lvlObject)
+        {
+            _objectsOnTile.Add(lvlObject);
+        }
+
+        public void RemoveFromTile(LevelObject lvlObject)
+        {
+            if (_objectsOnTile.Contains(lvlObject))
+            {
+                _objectsOnTile.Remove(lvlObject);
+            }
         }
 
         public void Select(Color selectColor)

@@ -1,6 +1,6 @@
 using ScriptableObjects.Cards;
 using Scripts.Cards;
-using Scripts.Player;
+using Scripts.LevelObjects;
 using System.Collections.Generic;
 using UnityEngine;
 

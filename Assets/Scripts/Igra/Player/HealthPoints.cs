@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Scripts.Player
+namespace Scripts.LevelObjects
 {
     [CreateAssetMenu(fileName = "Newe Health points", menuName = "ScriptableObjects/HealthPoints")]
     public class HealthPoints : ScriptableObject

@@ -1,4 +1,4 @@
-using Scripts.Player;
+using Scripts.LevelObjects;
 using UnityEngine;
 using UnityEngine.UI;
 

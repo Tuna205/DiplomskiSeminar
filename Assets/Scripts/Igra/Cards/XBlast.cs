@@ -14,10 +14,10 @@ namespace Scripts.Cards
         //TODO ne koristi new
         public override bool Ability()
         {
-            DmgTile(character.position.tile.Position + new Vector2Int(1, 1));
-            DmgTile(character.position.tile.Position + new Vector2Int(1, -1));
-            DmgTile(character.position.tile.Position + new Vector2Int(-1, 1));
-            DmgTile(character.position.tile.Position + new Vector2Int(-1, -1));
+            DmgTile(character.CurrentTile.Position + new Vector2Int(1, 1));
+            DmgTile(character.CurrentTile.Position + new Vector2Int(1, -1));
+            DmgTile(character.CurrentTile.Position + new Vector2Int(-1, 1));
+            DmgTile(character.CurrentTile.Position + new Vector2Int(-1, -1));
             return true;
         }
     }

@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Scripts.Map
 {
+    //TODO tilemap??
     public class Map : MonoBehaviour
     {
         public int sizeX, sizeY;
@@ -11,12 +12,7 @@ namespace Scripts.Map
         public GameObject tilePrefab;
 
         public PlayerBombs player1Bombs;
-
-        public CharacterPosition player1Position;
-
         public PlayerBombs player2Bombs;
-
-        public CharacterPosition player2Position;
 
         //public ObstacleList obstacleList;
 
