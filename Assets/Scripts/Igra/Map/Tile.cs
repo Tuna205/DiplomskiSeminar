@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using Scripts.LevelObjects;
+using System;
 
 namespace Scripts.Map
 {
@@ -11,25 +12,24 @@ namespace Scripts.Map
     {
         private SpriteRenderer _spriteRenderer;
         private Collider2D _collider;
-        private SelectedTiles _selectedTiles;
         private Vector2Int _position;
+        private SelectedTiles _selectedTiles;
         private List<LevelObject> _objectsOnTile = new List<LevelObject>();
 
         public Vector2Int Position => _position;
         public bool CanBeSelected { get; set; }
         public List<LevelObject> ObjectsOnTile => _objectsOnTile;
 
-        private UnityEvent _onSelectEvent;
+        public Action<Vector2Int> onSelected;
 
         //Call this function first
-        public void Init(Vector2Int position, Sprite sprite, SelectedTiles selectedTiles)
+        public void Init(Vector2Int position, Sprite sprite)
         {
             _position = position;
             _spriteRenderer = this.GetComponent<SpriteRenderer>();
             _spriteRenderer.sprite = sprite;
             _collider = this.GetComponent<Collider2D>();
-            _selectedTiles = selectedTiles;
-            _onSelectEvent = new UnityEvent();
+            _selectedTiles = SelectedTiles.Instance;
         }
 
         public void AddToTile(LevelObject lvlObject)
@@ -49,24 +49,22 @@ namespace Scripts.Map
         {
             _selectedTiles.DeselectAll();
             _spriteRenderer.color = selectColor;
-            //ubaci u listu
             _selectedTiles.Add(this);
         }
 
         public void Deselect()
         {
             _spriteRenderer.color = Color.white;
-            //izbaci iz liste deselectanih
             _selectedTiles.Remove(this);
         }
 
         public void OnMouseDown()
         {
             if (CanBeSelected == false) return;
+
             //deselect other tiles
             Select(Color.cyan);
-            //Treba biti event !!!
-            //_onSelectEvent
+            onSelected?.Invoke(Position);
         }
     }
 }

@@ -30,7 +30,7 @@ namespace Scripts.Map
         {
             _tileMatrix = new Tile[sizeX, sizeY];
             //_startCoordinates = new Vector3(-9f, 4.5f, 0f);
-            _selectedTiles = SelectedTiles.CreateInstance();
+            _selectedTiles = SelectedTiles.Instance;
             Vector3 tmp = this.transform.localScale;
             _tileSize = new Vector2(tmp.x * 0.32f, tmp.y * 0.32f);
             SetupMap();
@@ -46,7 +46,7 @@ namespace Scripts.Map
                     GameObject go = GameObject.Instantiate(tilePrefab, _currentCoordinates, Quaternion.identity, this.transform);
                     Tile newTile = go.GetComponent<Tile>();
                     Sprite sprite = FindTileSprite(i, j);
-                    newTile.Init(new Vector2Int(i, j), sprite, _selectedTiles);
+                    newTile.Init(new Vector2Int(i, j), sprite);
                     _tileMatrix[i, j] = newTile;
                     _currentCoordinates.x += _tileSize.x;
                 }
@@ -67,7 +67,6 @@ namespace Scripts.Map
         {
             return (pos.x >= 0 && pos.x < sizeX && pos.y >= 0 && pos.y < sizeY);
         }
-
 
         private Sprite FindTileSprite(int x, int y)
         {

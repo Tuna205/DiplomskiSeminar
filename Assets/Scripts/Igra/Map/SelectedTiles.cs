@@ -3,20 +3,26 @@ using UnityEngine;
 
 namespace Scripts.Map
 {
-    public class SelectedTiles : ScriptableObject
+    public class SelectedTiles
     {
         public List<Tile> selectedTiles;
 
-        private void Init()
+        private static SelectedTiles _instance = null;
+        public static SelectedTiles Instance
         {
-            selectedTiles = new List<Tile>();
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new SelectedTiles();
+                }
+                return _instance;
+            }
         }
 
-        public static SelectedTiles CreateInstance()
+        private SelectedTiles()
         {
-            SelectedTiles objs = ScriptableObject.CreateInstance<SelectedTiles>();
-            objs.Init();
-            return objs;
+            selectedTiles = new List<Tile>();
         }
 
         public void Add(Tile position)
