@@ -20,7 +20,7 @@ namespace Scripts.Map
 
         public CharacterPosition player2Position;
 
-        public ObstacleList obstacleList;
+        //public ObstacleList obstacleList;
 
         
         private Tile[,] _tileMatrix;

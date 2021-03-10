@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1262483546159963158}
-  - component: {fileID: 5381776356436105937}
+  - component: {fileID: 1262483545569980124}
   m_Layer: 0
   m_Name: Map
   m_TagString: Map
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5381776356436105937
+--- !u!114 &1262483545569980124
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,12 +45,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sizeX: 4
   sizeY: 4
-  backgroundSpriteManager: {fileID: 11400000, guid: 3b2ab3a748522e44e9b2d025f23842a3,
+  backgroundSpriteManager: {fileID: 11400000, guid: 389515e4cd3f341479998ec4c1de9dcb,
     type: 2}
   tilePrefab: {fileID: 8048470666447016359, guid: ecc5b89dbb51c9b4a9394b17d682646f,
     type: 3}
   player1Bombs: {fileID: 11400000, guid: 922b6aad5d0592447891a53394327e9d, type: 2}
   player1Position: {fileID: 11400000, guid: ad37ce611281cb7438130db07d8cb1ed, type: 2}
-  player2Bombs: {fileID: 0}
-  player2Position: {fileID: 11400000, guid: 29d8131fbb37e124da29328961fe9f35, type: 2}
-  obstacleList: {fileID: 0}
+  player2Bombs: {fileID: 11400000, guid: 4aff1692270825f488ef4561f169ce6d, type: 2}
+  player2Position: {fileID: 11400000, guid: ad37ce611281cb7438130db07d8cb1ed, type: 2}

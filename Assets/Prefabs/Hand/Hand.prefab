@@ -43,6 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecb175f37f104fa44bb09c4d3f484f3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardBack: {fileID: 11400000, guid: 4f42aaca98400c946b015c8cdfd73e88, type: 2}
   character: {fileID: 0}
   maxCards: 5
+  canPlay: 1
   _deck: {fileID: 0}

@@ -56,6 +56,8 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -67,6 +69,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -79,6 +82,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &3609033112740749123
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -104,7 +108,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a96c6a25e31a8245beef7fd967671a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hp: {fileID: 11400000, guid: aab0ab2abbd92c84a80bfdac28c2d60a, type: 2}
   position: {fileID: 11400000, guid: ad37ce611281cb7438130db07d8cb1ed, type: 2}
-  enemyBombs: {fileID: 0}
-  maxHp: 0
-  startPosition: {x: 0, y: 1}
+  enemyBombs: {fileID: 11400000, guid: 922b6aad5d0592447891a53394327e9d, type: 2}
+  maxHp: 5
+  startPosition: {x: 2, y: 1}

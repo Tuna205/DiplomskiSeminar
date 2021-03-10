@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Igra/IgraTest.unity
+    path: Assets/Scenes/IgraTest.unity
     guid: 70019829ea3239841910a4b8274108c0
   m_configObjects: {}
