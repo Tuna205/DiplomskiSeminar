@@ -22,7 +22,7 @@ namespace Assets.UI
             hp.onHpChanged += UpdateBar;
             UpdateBar(hp.maxHp);
         }
- 
+
         void UpdateBar(int hpValue)
         {
             hpbar.value = hpValue;

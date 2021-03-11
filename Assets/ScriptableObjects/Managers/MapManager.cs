@@ -1,30 +1,21 @@
 using UnityEngine;
 
-namespace ScriptableObjects.Managers
+namespace Scripts.Map
 {
-    public class MapManager : ScriptableObject
+    public class MapManager
     {
-        private static GameObject _inst;
-        public static GameObject Instance
+        private static Map _inst;
+        public static Map Instance
         {
             get
             {
                 if (_inst == null)
                 {
-                    _inst = GameObject.FindGameObjectWithTag("Map");
-                }
-                if (_inst == null)
-                {
-                    throw new MissingReferenceException("Map not in scene");
+                    GameObject mapGo = GameObject.FindGameObjectWithTag("Map");
+                    _inst = mapGo?.GetComponent<Map>();
                 }
                 return _inst;
             }
-        }
-
-        private void Awake()
-        {
-            Debug.Log("AWAKE");
-            this.hideFlags = HideFlags.DontUnloadUnusedAsset;
         }
     }
 }

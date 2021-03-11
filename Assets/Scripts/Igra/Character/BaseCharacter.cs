@@ -1,4 +1,3 @@
-using ScriptableObjects.Managers;
 using Scripts.Map;
 using UnityEngine;
 
@@ -32,7 +31,7 @@ namespace Scripts.LevelObjects
 
         protected void Awake()
         {
-            _map = MapManager.Instance.GetComponent<Map.Map>();
+            _map = MapManager.Instance;
         }
 
         protected void Start()

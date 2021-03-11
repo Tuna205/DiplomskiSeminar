@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
-using Scripts.LevelObjects;
+﻿using Scripts.LevelObjects;
 using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Scripts.Map
 {

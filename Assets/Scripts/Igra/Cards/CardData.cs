@@ -1,4 +1,3 @@
-using ScriptableObjects.Cards;
 using UnityEngine;
 
 namespace Scripts.Cards

@@ -1,9 +1,8 @@
-using ScriptableObjects.Managers;
-using Scripts.Map;
 using Scripts.LevelObjects;
+using Scripts.Map;
 using System.Collections;
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Scripts.Cards
 {
@@ -16,8 +15,7 @@ namespace Scripts.Cards
         public override void Awake()
         {
             base.Awake();
-            //IdToCard.Instance.dict[Id] = this;
-            map = MapManager.Instance.GetComponent<Map.Map>();
+            map = MapManager.Instance;
         }
         protected void DmgTile(Vector2Int pos)
         {
