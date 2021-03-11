@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Scripts.Cards
 {
-    public class IdToCard : ScriptableObject
+    public class IdToCard
     {
         private static IdToCard _inst;
         public static IdToCard Instance
@@ -12,13 +12,12 @@ namespace Scripts.Cards
             {
                 if (_inst == null)
                 {
-                    _inst = ScriptableObject.CreateInstance<IdToCard>();
+                    _inst = new IdToCard();
                 }
                 return _inst;
             }
         }
 
-        //Updejta se na Init u BaseCard
         public Dictionary<int, BaseCard> dict = new Dictionary<int, BaseCard>();
     }
 }

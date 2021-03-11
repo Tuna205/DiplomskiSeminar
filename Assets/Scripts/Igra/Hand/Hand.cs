@@ -11,25 +11,21 @@ namespace Scripts.Hand
         public CardBack cardBack;
         public BaseCharacter character;
         public int maxCards = 5;
-
         //samo za ucitavanje!
         public bool canPlay;
-
         public Deck.Deck _deck;
 
-        private List<int> _handIds;
-
-        private Vector3 lastCardPosition;
+        private List<BaseCard> _cards;
+        private Vector3 _lastCardPosition;
 
         public bool CanPlayCards { get; set; }
-
         public bool PlayedCard { get; set; }
         public CardBack CardBack => cardBack;
 
         private void Awake()
         {
             //_hand = cardsInHand.cards;
-            _handIds = new List<int>();
+            _cards = new List<BaseCard>();
             CanPlayCards = canPlay;
         }
 
@@ -42,48 +38,40 @@ namespace Scripts.Hand
         private void ShowCardBackSide()
         {
             this.GetComponent<SpriteRenderer>().sprite = cardBack.artwork;
-
         }
 
         public int NumOfCards()
         {
-            return _handIds.Count;
+            return _cards.Count;
         }
 
         public void Draw(int n)
         {
-            if (_handIds.Count + n > maxCards)
+            if (_cards.Count + n > maxCards)
             {
                 //TODO discard cards
                 print("To many cards in hand");
                 return;
             }
             List<int> addedCards = _deck.Draw(n);
-            _handIds.AddRange(addedCards);
             foreach (int cardId in addedCards)
             {
-                InstantiateCard(IdToCard.Instance.dict[cardId]);
+                BaseCard card = InstantiateCard(IdToCard.Instance.dict[cardId]);
+                _cards.Add(card);
             }
         }
 
-        //Uses localCardPosition for instantiate postion
-        private void InstantiateCard(BaseCard card)
+        private BaseCard InstantiateCard(BaseCard cardPrefab)
         {
-            //ako player nemoze igrat karte onda prikazi backside
-            /*
-            if(CanPlayCards == false){
-                card.ShowBack();
-            }
-            */
-            var tmp = Instantiate(card, this.transform.position + lastCardPosition, Quaternion.identity, this.transform);
-            lastCardPosition += new Vector3(3, 0, 0);
+            var card = Instantiate(cardPrefab, this.transform.position + _lastCardPosition, Quaternion.identity, this.transform);
+            _lastCardPosition += new Vector3(3, 0, 0);
+            return card;
         }
 
         public void RemoveCard(BaseCard card)
         {
-            //TODO if go none in hand
-            _handIds.Remove(card.Id);
-            //print(_handIds.Count);
+            if (!_cards.Contains(card)) return;
+            _cards.Remove(card);
             int siblingIndex = card.transform.GetSiblingIndex();
             Destroy(card.gameObject);
             RearangeCards(siblingIndex);
@@ -97,7 +85,7 @@ namespace Scripts.Hand
                 if (t.GetSiblingIndex() < destroyedSiblingIndex) continue;
                 t.transform.position -= new Vector3(3, 0, 0);
             }
-            lastCardPosition -= new Vector3(3, 0, 0);
+            _lastCardPosition -= new Vector3(3, 0, 0);
         }
 
         //private void Update()
