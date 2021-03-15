@@ -6,7 +6,7 @@ namespace Scripts.LevelObjects
     public abstract class BaseCharacter : LevelObject
     {
         public HealthPoints _hp;
-        public PlayerBombs enemyBombs;//? kad se makne makni PlayerBombs
+        public PlayerBombs enemyBombs;//? kad se makne makni PlayerBombs, premjesti u Player i EnemyPlayer
 
         public HealthPoints Hp => _hp;
 

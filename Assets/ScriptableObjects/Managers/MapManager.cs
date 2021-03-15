@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Scripts.Map
 {
-    public class MapManager
+    public class MapManager //TODO generic Manager
     {
         private static Map _inst;
         public static Map Instance

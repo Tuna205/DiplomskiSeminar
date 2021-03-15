@@ -19,13 +19,13 @@ namespace Scripts.Cards
         {
             this.name = cardData.name;
             IdToCard.Instance.dict[Id] = this;
-            //TODO setup collider width/height
         }
 
         private void InitCharacter()
         {
-            hand = this.transform.parent.GetComponent<Hand.Hand>();
-            character = hand.character;
+            Player.Player player = this.transform.parent.parent.GetComponent<Player.Player>(); //TODO kriticno
+            hand = player.hand;
+            character = player.character;
         }
 
         public virtual void Awake()
@@ -59,7 +59,8 @@ namespace Scripts.Cards
             gameManager.CardQueue.Add(this);
             Play(true);
             print($"Player added {this.name}");
-            hand.PlayedCard = true;
+            //hand.PlayedCard = true;
+            hand.onCardPlayed?.Invoke();
         }
 
         public void Play(bool dontTriggerAbility)

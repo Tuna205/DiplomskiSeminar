@@ -1,6 +1,7 @@
 using ScriptableObjects.Cards;
 using Scripts.Cards;
 using Scripts.LevelObjects;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,22 +10,23 @@ namespace Scripts.Hand
     public class Hand : MonoBehaviour
     {
         public CardBack cardBack;
-        public BaseCharacter character;
         public int maxCards = 5;
         //samo za ucitavanje!
         public bool canPlay;
         public Deck.Deck _deck;
 
+        public Action onCardPlayed;
+
         private List<BaseCard> _cards;
         private Vector3 _lastCardPosition;
 
         public bool CanPlayCards { get; set; }
-        public bool PlayedCard { get; set; }
+
+
         public CardBack CardBack => cardBack;
 
         private void Awake()
         {
-            //_hand = cardsInHand.cards;
             _cards = new List<BaseCard>();
             CanPlayCards = canPlay;
         }

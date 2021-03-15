@@ -1,4 +1,6 @@
 using Scripts.Cards;
+using Scripts.Player;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,61 +15,51 @@ namespace Scripts.GM
     }
     public class GameManager : MonoBehaviour
     {
-        public Canvas PlayerTurnCanvas;
-        public Canvas EnemyTurnCanvas;
-        public Hand.Hand playerHand;
 
-        public Hand.Hand enemyHand;
-        public EnemyPlayer enemy;
+        public HumanPlayer humanPlayer;
 
-        public bool firstTurnPlayer = true;
+        public static Action onPlayerTurnStart;
+        public static Action onPlayerTurnEnd;
+        public static Action onEnemyTurnStart;
+        public static Action onEnemyTurnEnd;
+        public static Action onResolveStart;
+        public static Action onResolveEnd;
 
-        private List<BaseCard> cardQueue;
+        public bool firstTurnPlayer = true; // enum
+
+        private List<BaseCard> cardQueue; //nova klasa
         private TurnState currentState;
 
-        public int numCardsToPlay = 3;
+        public static int numCardsToPlay = 3;
 
         private int playerCardsPlayed = 0;
-
         private int enemyCardsPlayed = 0;
 
-        public List<BaseCard> CardQueue
-        {
-            get
-            {
-                return cardQueue;
-            }
-        }
+        public List<BaseCard> CardQueue => cardQueue;
 
         public void PlayerTurnStart()
         {
-            //StartCoroutine(ShowCanvasForSecounds(PlayerTurnCanvas, 2));
-            playerHand.CanPlayCards = true;
-            //indikator za player turn
-            //Omoguci da player igra karte iz ruke
-
+            onPlayerTurnStart?.Invoke();
         }
 
         public void PlayerTurnEnd()
         {
             playerCardsPlayed++;
-            playerHand.CanPlayCards = false;
+            onPlayerTurnEnd?.Invoke();
             NextTurnState();
         }
 
-
         public void EnemyTurnStart()
         {
-            //StartCoroutine(ShowCanvasForSecounds(EnemyTurnCanvas, 2));
-            //enemy igra kartu
-            cardQueue.Add(enemy.ai.PlayCard(true));
+            onEnemyTurnStart?.Invoke();
+            //cardQueue.Add(enemy.ai.PlayCard(true));
             EnemyTurnEnd();
         }
 
         public void EnemyTurnEnd()
         {
+            onEnemyTurnEnd?.Invoke();
             enemyCardsPlayed++;
-            //enemy ai turn
             NextTurnState();
         }
 
@@ -80,14 +72,13 @@ namespace Scripts.GM
             }
             cardQueue.Clear();
         }
+
         public void Resolve()
         {
+            onResolveStart?.Invoke();
             StartCoroutine(ResolveRutine());
 
-            playerHand.Draw(numCardsToPlay);
-            enemyHand.Draw(numCardsToPlay);
-
-
+            onResolveEnd?.Invoke();
             NextTurnState();
         }
 
@@ -95,6 +86,7 @@ namespace Scripts.GM
         {
             if (playerCardsPlayed == numCardsToPlay && playerCardsPlayed == enemyCardsPlayed)
             {
+                Debug.Log("RESOLVE");
                 currentState = TurnState.Resolve;
                 playerCardsPlayed = 0;
                 enemyCardsPlayed = 0;
@@ -117,7 +109,6 @@ namespace Scripts.GM
                 if (firstTurnPlayer == true)
                 {
                     //ako je player prvi onda nakon 3 poteza igra enemy prvi
-
                     currentState = TurnState.EnemyTurn;
                     EnemyTurnStart();
                     firstTurnPlayer = !firstTurnPlayer;
@@ -131,13 +122,6 @@ namespace Scripts.GM
             }
         }
 
-        private IEnumerator ShowCanvasForSecounds(Canvas c, int n)
-        {
-            c.gameObject.SetActive(true);
-            yield return new WaitForSecondsRealtime(n);
-            c.gameObject.SetActive(false);
-        }
-
         private void Awake()
         {
             cardQueue = new List<BaseCard>();
@@ -145,6 +129,8 @@ namespace Scripts.GM
 
         private void Start()
         {
+            humanPlayer.hand.onCardPlayed += PlayerTurnEnd;
+
             if (firstTurnPlayer == true)
             {
                 this.currentState = TurnState.PlayerTurn;
@@ -157,17 +143,9 @@ namespace Scripts.GM
             }
         }
 
-        private void Update()
+        private void OnDestroy()
         {
-            print($"Turn State = {currentState}");
-            if (currentState == TurnState.PlayerTurn)
-            {
-                if (playerHand.PlayedCard == true)
-                {
-                    playerHand.PlayedCard = false;
-                    PlayerTurnEnd();
-                }
-            }
+            humanPlayer.hand.onCardPlayed -= PlayerTurnEnd;
         }
     }
 }

@@ -54,7 +54,7 @@ namespace Scripts.Cards
             Ability(selectedTileRelative);
 
             hand.RemoveCard(this);
-            hand.PlayedCard = true;
+            hand.onCardPlayed?.Invoke();
             UnmarkTilesSelected();
         }
 
