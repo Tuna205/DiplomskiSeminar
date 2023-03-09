@@ -1,6 +1,7 @@
+using Maps;
 using UnityEngine;
 
-namespace Scripts.Map
+namespace ScriptableObjects.Managers
 {
     public class MapManager //TODO generic Manager
     {
@@ -12,7 +13,7 @@ namespace Scripts.Map
                 if (_inst == null)
                 {
                     GameObject mapGo = GameObject.FindGameObjectWithTag("Map");
-                    _inst = mapGo?.GetComponent<Map>();
+                    _inst = mapGo != null ? mapGo.GetComponent<Map>() : null;
                 }
                 return _inst;
             }

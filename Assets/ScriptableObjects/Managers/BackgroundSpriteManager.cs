@@ -13,7 +13,6 @@ namespace ScriptableObjects.Managers
         public Sprite bottomCenter;
         public Sprite left;
         public Sprite right;
-        //mozda imati listu za centar
         public Sprite center;
     }
 }
