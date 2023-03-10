@@ -10,28 +10,28 @@ namespace Cards
 {
     public abstract class BaseAttackCard : BaseCard
     {
-        private Map map;
-        public int dmg = 1;
+        private Map _map;
+        [SerializeField] private int _dmg = 1;
 
         public override void Awake()
         {
             base.Awake();
-            map = MapManager.Instance;
+            _map = MapManager.Instance;
         }
 
         protected void DmgTile(Vector2Int pos)
         {
             Tile tile = PosToTile(pos);
             if (tile == null) return;
-            map.StartCoroutine(FlashColor(tile, Color.red));
+            _map.StartCoroutine(FlashColor(tile, Color.red));
             List<LevelObject> objectsOnTile = tile.ObjectsOnTile.FindAll(lo => lo is BaseCharacter);
-            objectsOnTile.ForEach(lo => (lo as BaseCharacter).Hp.ChangeHp(-dmg));
+            objectsOnTile.ForEach(lo => (lo as BaseCharacter).Hp.ChangeHp(-_dmg));
         }
 
         //vraca null ako je pozicija van mape
         protected Tile PosToTile(Vector2Int pos)
         {
-            return map.CheckInBounds(pos) ? map.TileMatrix[pos.x, pos.y] : null;
+            return _map.CheckInBounds(pos) ? _map.TileMatrix[pos.x, pos.y] : null;
         }
 
         protected void ChangeColor(Tile tile, Color color)

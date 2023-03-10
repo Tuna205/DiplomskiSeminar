@@ -122,4 +122,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8bae5bd665b244db30bbce1e8ce18f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardData: {fileID: 11400000, guid: e260f130694211347bcfe4fefaeedb32, type: 2}
+  _cardData: {fileID: 11400000, guid: e260f130694211347bcfe4fefaeedb32, type: 2}

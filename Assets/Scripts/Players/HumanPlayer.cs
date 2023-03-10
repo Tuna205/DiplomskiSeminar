@@ -13,17 +13,17 @@ namespace Players
 
         private void ActivateCards()
         {
-            hand.CanPlayCards = true;
+            _hand.CanPlayCards = true;
         }
 
         private void DisableCards()
         {
-            hand.CanPlayCards = false;
+            _hand.CanPlayCards = false;
         }
 
         private void DrawCards()
         {
-            hand.Draw(GameManager.numCardsToPlay);
+            _hand.Draw(GameManager._numCardsToPlay);
         }
 
         private void OnDestroy()

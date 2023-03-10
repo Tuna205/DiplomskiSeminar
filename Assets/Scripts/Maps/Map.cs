@@ -6,10 +6,10 @@ namespace Maps
     //TODO tilemap??
     public class Map : MonoBehaviour
     {
-        public int sizeX, sizeY;
+        [SerializeField] private int _sizeX, _sizeY;
 
-        public BackgroundSpriteManager backgroundSpriteManager;
-        public GameObject tilePrefab;
+        [SerializeField] private BackgroundSpriteManager _backgroundSpriteManager;
+        [SerializeField] private GameObject _tilePrefab;
 
         private Tile[,] _tileMatrix;
         private Vector2 _tileSize;
@@ -18,7 +18,7 @@ namespace Maps
 
         private void Awake()
         {
-            _tileMatrix = new Tile[sizeX, sizeY];
+            _tileMatrix = new Tile[_sizeX, _sizeY];
             Vector3 localScale = this.transform.localScale;
             _tileSize = new Vector2(localScale.x * 0.32f, localScale.y * 0.32f);
             SetupMap();
@@ -27,18 +27,18 @@ namespace Maps
         private void SetupMap()
         {
             Vector3 currentCoordinates = this.transform.position;
-            for (int i = 0; i < sizeX; i++)
+            for (int i = 0; i < _sizeX; i++)
             {
-                for (int j = 0; j < sizeY; j++)
+                for (int j = 0; j < _sizeY; j++)
                 {
-                    GameObject go = GameObject.Instantiate(tilePrefab, currentCoordinates, Quaternion.identity, this.transform);
+                    GameObject go = GameObject.Instantiate(_tilePrefab, currentCoordinates, Quaternion.identity, this.transform);
                     Tile newTile = go.GetComponent<Tile>();
                     Sprite sprite = FindTileSprite(i, j);
                     newTile.Init(new Vector2Int(i, j), sprite);
                     _tileMatrix[i, j] = newTile;
                     currentCoordinates.x += _tileSize.x;
                 }
-                currentCoordinates.x -= _tileSize.x * sizeY;
+                currentCoordinates.x -= _tileSize.x * _sizeY;
                 currentCoordinates.y -= _tileSize.y;
             }
         }
@@ -53,22 +53,22 @@ namespace Maps
 
         public bool CheckInBounds(Vector2Int pos)
         {
-            return (pos.x >= 0 && pos.x < sizeX && pos.y >= 0 && pos.y < sizeY);
+            return (pos.x >= 0 && pos.x < _sizeX && pos.y >= 0 && pos.y < _sizeY);
         }
 
         private Sprite FindTileSprite(int x, int y)
         {
-            if (x == 0 && y == 0) return backgroundSpriteManager.topLeft;
-            if (x == 0 && y == sizeY - 1) return backgroundSpriteManager.topRight;
-            if (x == 0) return backgroundSpriteManager.topCenter;
+            if (x == 0 && y == 0) return _backgroundSpriteManager.topLeft;
+            if (x == 0 && y == _sizeY - 1) return _backgroundSpriteManager.topRight;
+            if (x == 0) return _backgroundSpriteManager.topCenter;
 
-            if (x == sizeX - 1 && y == 0) return backgroundSpriteManager.bottomLeft;
-            if (x == sizeX - 1 && y == sizeY - 1) return backgroundSpriteManager.bottomRight;
-            if (x == sizeX - 1) return backgroundSpriteManager.bottomCenter;
+            if (x == _sizeX - 1 && y == 0) return _backgroundSpriteManager.bottomLeft;
+            if (x == _sizeX - 1 && y == _sizeY - 1) return _backgroundSpriteManager.bottomRight;
+            if (x == _sizeX - 1) return _backgroundSpriteManager.bottomCenter;
 
-            if (y == 0) return backgroundSpriteManager.left;
-            if (y == sizeY - 1) return backgroundSpriteManager.right;
-            return backgroundSpriteManager.center;
+            if (y == 0) return _backgroundSpriteManager.left;
+            if (y == _sizeY - 1) return _backgroundSpriteManager.right;
+            return _backgroundSpriteManager.center;
         }
     }
 }

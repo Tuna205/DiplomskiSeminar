@@ -6,10 +6,10 @@ namespace Players
     [CreateAssetMenu(fileName = "New Health points", menuName = "ScriptableObjects/HealthPoints")]
     public class HealthPoints : ScriptableObject
     {
+        [SerializeField] private int _maxHp;
         private int _hp;
-        public int maxHp;
 
-        public int MaxHp => maxHp;
+        public int MaxHp => _maxHp;
         public int Hp => _hp;
 
         public Action<int> onHpChanged;
@@ -17,7 +17,7 @@ namespace Players
         //radi kao start, awake se samo poziva kada se objekt stvara (asseti se stvaraju samo jednom i ne stvaraju se opet na restart igre)
         private void OnEnable()
         {
-            _hp = maxHp;
+            _hp = _maxHp;
         }
 
         public void ChangeHp(int dmg)

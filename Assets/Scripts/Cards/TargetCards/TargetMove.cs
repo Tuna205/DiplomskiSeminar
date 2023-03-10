@@ -13,7 +13,7 @@ namespace Cards.TargetCards
 
         protected override bool Ability(Vector2Int selectedRelative)
         {
-            character.MoveToTile(character.CurrentTile.Position + selectedRelative);
+            _character.MoveToTile(_character.CurrentTile.Position + selectedRelative);
             return true;
         }
 
@@ -24,15 +24,15 @@ namespace Cards.TargetCards
 
         protected override void ShowPlayableSquares()
         {
-            MarkTilesSelectable(character.CurrentTile.Position + new Vector2Int(1, 1));
-            MarkTilesSelectable(character.CurrentTile.Position + new Vector2Int(1, -1));
-            MarkTilesSelectable(character.CurrentTile.Position + new Vector2Int(-1, 1));
-            MarkTilesSelectable(character.CurrentTile.Position + new Vector2Int(-1, -1));
+            MarkTilesSelectable(_character.CurrentTile.Position + new Vector2Int(1, 1));
+            MarkTilesSelectable(_character.CurrentTile.Position + new Vector2Int(1, -1));
+            MarkTilesSelectable(_character.CurrentTile.Position + new Vector2Int(-1, 1));
+            MarkTilesSelectable(_character.CurrentTile.Position + new Vector2Int(-1, -1));
 
-            MarkTilesSelectable(character.CurrentTile.Position + new Vector2Int(1, 0));
-            MarkTilesSelectable(character.CurrentTile.Position + new Vector2Int(-1, 0));
-            MarkTilesSelectable(character.CurrentTile.Position + new Vector2Int(0, 1));
-            MarkTilesSelectable(character.CurrentTile.Position + new Vector2Int(0, -1));
+            MarkTilesSelectable(_character.CurrentTile.Position + new Vector2Int(1, 0));
+            MarkTilesSelectable(_character.CurrentTile.Position + new Vector2Int(-1, 0));
+            MarkTilesSelectable(_character.CurrentTile.Position + new Vector2Int(0, 1));
+            MarkTilesSelectable(_character.CurrentTile.Position + new Vector2Int(0, -1));
         }
     }
 }

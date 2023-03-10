@@ -43,13 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bcc38cfd6125504fb927f94e60c5dfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sizeX: 4
-  sizeY: 4
-  backgroundSpriteManager: {fileID: 11400000, guid: 389515e4cd3f341479998ec4c1de9dcb,
+  _sizeX: 4
+  _sizeY: 4
+  _backgroundSpriteManager: {fileID: 11400000, guid: 389515e4cd3f341479998ec4c1de9dcb,
     type: 2}
-  tilePrefab: {fileID: 8048470666447016359, guid: ecc5b89dbb51c9b4a9394b17d682646f,
+  _tilePrefab: {fileID: 8048470666447016359, guid: ecc5b89dbb51c9b4a9394b17d682646f,
     type: 3}
-  player1Bombs: {fileID: 11400000, guid: 922b6aad5d0592447891a53394327e9d, type: 2}
-  player1Position: {fileID: 11400000, guid: ad37ce611281cb7438130db07d8cb1ed, type: 2}
-  player2Bombs: {fileID: 11400000, guid: 4aff1692270825f488ef4561f169ce6d, type: 2}
-  player2Position: {fileID: 11400000, guid: ad37ce611281cb7438130db07d8cb1ed, type: 2}

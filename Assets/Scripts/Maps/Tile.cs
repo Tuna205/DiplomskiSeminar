@@ -10,10 +10,9 @@ namespace Maps
     public class Tile : MonoBehaviour
     {
         private SpriteRenderer _spriteRenderer;
-        private Collider2D _collider;
         private Vector2Int _position;
         private SelectedTiles _selectedTiles;
-        private List<LevelObject> _objectsOnTile = new List<LevelObject>();
+        private readonly List<LevelObject> _objectsOnTile = new List<LevelObject>();
 
         public Vector2Int Position => _position;
         public bool CanBeSelected { get; set; }
@@ -24,10 +23,9 @@ namespace Maps
         //Call this function first
         public void Init(Vector2Int position, Sprite sprite)
         {
-            _position = position;
+            this._position = position;
             _spriteRenderer = this.GetComponent<SpriteRenderer>();
             _spriteRenderer.sprite = sprite;
-            _collider = this.GetComponent<Collider2D>();
             _selectedTiles = SelectedTiles.Instance;
         }
 

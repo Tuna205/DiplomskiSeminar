@@ -10,11 +10,9 @@ namespace ScriptableObjects.Managers
         {
             get
             {
-                if (_inst == null)
-                {
-                    GameObject mapGo = GameObject.FindGameObjectWithTag("Map");
-                    _inst = mapGo != null ? mapGo.GetComponent<Map>() : null;
-                }
+                if (_inst != null) return _inst;
+                GameObject mapGo = GameObject.FindGameObjectWithTag("Map");
+                _inst = mapGo != null ? mapGo.GetComponent<Map>() : null;
                 return _inst;
             }
         }

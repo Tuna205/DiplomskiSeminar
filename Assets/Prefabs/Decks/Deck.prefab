@@ -45,9 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc72ff798de37ce43bd68780d12bc91e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hand: {fileID: 0}
-  cardBack: {fileID: 11400000, guid: 4f42aaca98400c946b015c8cdfd73e88, type: 2}
-  deckList: {fileID: 11400000, guid: 7ded9771b615c2f48bc7448b8b8633c3, type: 2}
+  _cardBack: {fileID: 11400000, guid: 4f42aaca98400c946b015c8cdfd73e88, type: 2}
+  _deckList: {fileID: 11400000, guid: 952965d15efee6141910d7d4d9b2ad2c, type: 2}
 --- !u!212 &2528128793678085300
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -56,7 +56,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -138,22 +138,22 @@ PrefabInstance:
     - target: {fileID: 7318396476762458656, guid: dd0c645a99b563245b8fd2f478663033,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7318396476762458656, guid: dd0c645a99b563245b8fd2f478663033,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7318396476762458656, guid: dd0c645a99b563245b8fd2f478663033,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7318396476762458656, guid: dd0c645a99b563245b8fd2f478663033,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7318396476762458656, guid: dd0c645a99b563245b8fd2f478663033,
         type: 3}
@@ -203,12 +203,12 @@ PrefabInstance:
     - target: {fileID: 7318396476762458656, guid: dd0c645a99b563245b8fd2f478663033,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -291
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7318396476762458656, guid: dd0c645a99b563245b8fd2f478663033,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 182
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 7318396476762458656, guid: dd0c645a99b563245b8fd2f478663033,
         type: 3}
@@ -229,6 +229,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerHpSlider
+      objectReference: {fileID: 0}
+    - target: {fileID: 7318396476762458659, guid: dd0c645a99b563245b8fd2f478663033,
+        type: 3}
+      propertyPath: m_Transition
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7318396477276452168, guid: dd0c645a99b563245b8fd2f478663033,
         type: 3}

@@ -9,14 +9,14 @@ namespace Hands
 {
     public class Hand : MonoBehaviour
     {
-        public CardBack cardBack;
-        public int maxCards = 5;
+        [SerializeField] private CardBack _cardBack;
+        [SerializeField] private int _maxCards = 5;
         
-        public Deck deck;
+        [SerializeField] private Deck _deck;
 
         public Action onCardPlayed;
 
-        private bool _canPlay = true;
+        private const bool _canPlay = true;
         private List<BaseCard> _cards;
         private Vector3 _lastCardPosition;
 
@@ -24,7 +24,7 @@ namespace Hands
 
         private static readonly Vector3 DistanceBetweenCards = new Vector3(3, 0, 0);
 
-        public CardBack CardBack => cardBack;
+        public CardBack CardBack => _cardBack;
 
         private void Awake()
         {
@@ -34,21 +34,21 @@ namespace Hands
 
         private void Start()
         {
-            Draw(maxCards);
+            Draw(_maxCards);
         }
 
         public void Draw(int n)
         {
-            if (_cards.Count + n > maxCards)
+            if (_cards.Count + n > _maxCards)
             {
                 //TODO discard cards
                 print("To many cards in hand");
                 return;
             }
-            List<int> addedCards = deck.Draw(n);
+            List<int> addedCards = _deck.Draw(n);
             foreach (int cardId in addedCards)
             {
-                BaseCard card = InstantiateCard(IdToCard.Instance.dict[cardId]);
+                BaseCard card = InstantiateCard(BaseCard.idToCard[cardId]);
                 _cards.Add(card);
             }
         }

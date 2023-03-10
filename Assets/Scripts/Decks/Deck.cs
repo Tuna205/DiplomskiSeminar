@@ -9,14 +9,14 @@ namespace Decks
 {
     public class Deck : MonoBehaviour
     {
-        public CardBack cardBack;
-        public DeckList deckList;
+        [SerializeField] private CardBack _cardBack;
+        [SerializeField] private DeckList _deckList;
         private List<int> _deck;
 
         private void Init()
         {
             _deck = new List<int>();
-            deckList.startDeckList.ForEach(card => _deck.Add(card.Id));
+            _deckList.startDeckList.ForEach(card => _deck.Add(card.Id));
             Shuffle();
         }
 
@@ -27,7 +27,7 @@ namespace Decks
 
         private void Start()
         {
-            this.GetComponent<SpriteRenderer>().sprite = cardBack.artwork;
+            this.GetComponent<SpriteRenderer>().sprite = _cardBack.artwork;
 
         }
 

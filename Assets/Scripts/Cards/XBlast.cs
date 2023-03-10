@@ -8,10 +8,10 @@ namespace Cards
 
         public override bool Ability()
         {
-            DmgTile(character.CurrentTile.Position + new Vector2Int(1, 1));
-            DmgTile(character.CurrentTile.Position + new Vector2Int(1, -1));
-            DmgTile(character.CurrentTile.Position + new Vector2Int(-1, 1));
-            DmgTile(character.CurrentTile.Position + new Vector2Int(-1, -1));
+            DmgTile(_character.CurrentTile.Position + new Vector2Int(1, 1));
+            DmgTile(_character.CurrentTile.Position + new Vector2Int(1, -1));
+            DmgTile(_character.CurrentTile.Position + new Vector2Int(-1, 1));
+            DmgTile(_character.CurrentTile.Position + new Vector2Int(-1, -1));
             return true;
         }
     }

@@ -6,21 +6,21 @@ namespace UI
 {
     public class HpBar : MonoBehaviour
     {
-        public HealthPoints hp;
+        [SerializeField] private HealthPoints _hp;
         private Slider _hpBar;
 
         private void Awake()
         {
             _hpBar = this.GetComponent<Slider>();
-            _hpBar.maxValue = hp.MaxHp;
+            _hpBar.maxValue = _hp.MaxHp;
             _hpBar.minValue = 0;
             _hpBar.wholeNumbers = true;
         }
 
         private void Start()
         {
-            hp.onHpChanged += UpdateBar;
-            UpdateBar(hp.maxHp);
+            _hp.onHpChanged += UpdateBar;
+            UpdateBar(_hp.MaxHp);
         }
 
         private void UpdateBar(int hpValue)
@@ -30,7 +30,7 @@ namespace UI
 
         private void OnDestroy()
         {
-            hp.onHpChanged -= UpdateBar;
+            _hp.onHpChanged -= UpdateBar;
         }
     }
 }

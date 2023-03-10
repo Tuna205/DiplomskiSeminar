@@ -16,7 +16,7 @@ namespace GameManagers
     public class GameManager : MonoBehaviour
     {
 
-        public HumanPlayer humanPlayer;
+        [SerializeField] private HumanPlayer _humanPlayer;
 
         public static Action onPlayerTurnStart;
         public static Action onPlayerTurnEnd;
@@ -25,12 +25,10 @@ namespace GameManagers
         public static Action onResolveStart;
         public static Action onResolveEnd;
 
-        public bool firstTurnPlayer = true; // enum
-
         private List<BaseCard> _cardQueue; //nova klasa
         private TurnState _currentState;
 
-        public static int numCardsToPlay = 3;
+        public static int _numCardsToPlay = 3;
 
         private int _playerCardsPlayed = 0;
         private int _enemyCardsPlayed = 0;
@@ -85,7 +83,7 @@ namespace GameManagers
 
         private void NextTurnState()
         {
-            if (_playerCardsPlayed == numCardsToPlay && _playerCardsPlayed == _enemyCardsPlayed)
+            if (_playerCardsPlayed == _numCardsToPlay && _playerCardsPlayed == _enemyCardsPlayed)
             {
                 Debug.Log("RESOLVE");
                 _currentState = TurnState.Resolve;
@@ -107,19 +105,9 @@ namespace GameManagers
             }
             else if (_currentState == TurnState.Resolve)
             {
-                if (firstTurnPlayer == true)
-                {
-                    //ako je player prvi onda nakon 3 poteza igra enemy prvi
-                    _currentState = TurnState.EnemyTurn;
-                    EnemyTurnStart();
-                    firstTurnPlayer = !firstTurnPlayer;
-                }
-                else
-                {
-                    _currentState = TurnState.PlayerTurn;
-                    PlayerTurnStart();
-                    firstTurnPlayer = !firstTurnPlayer;
-                }
+                //ako je player prvi onda nakon 3 poteza igra enemy prvi
+                _currentState = TurnState.EnemyTurn;
+                EnemyTurnStart();
             }
         }
 
@@ -130,23 +118,15 @@ namespace GameManagers
 
         private void Start()
         {
-            humanPlayer.hand.onCardPlayed += PlayerTurnEnd;
-
-            if (firstTurnPlayer == true)
-            {
-                this._currentState = TurnState.PlayerTurn;
+            _humanPlayer.Hand.onCardPlayed += PlayerTurnEnd;
+            this._currentState = TurnState.PlayerTurn;
                 PlayerTurnStart();
-            }
-            else
-            {
-                this._currentState = TurnState.EnemyTurn;
-                EnemyTurnStart();
-            }
+
         }
 
         private void OnDestroy()
         {
-            humanPlayer.hand.onCardPlayed -= PlayerTurnEnd;
+            _humanPlayer.Hand.onCardPlayed -= PlayerTurnEnd;
         }
     }
 }

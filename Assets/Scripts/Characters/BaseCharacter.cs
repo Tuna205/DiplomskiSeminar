@@ -8,17 +8,18 @@ namespace Characters
 {
     public abstract class BaseCharacter : LevelObject
     {
-        public HealthPoints hp;
-        public PlayerBombs enemyBombs;//? kad se makne makni PlayerBombs, premjesti u Player i EnemyPlayer
+        [SerializeField] private HealthPoints _hp;
+        [SerializeField] private PlayerBombs _enemyBombs;//? kad se makne makni PlayerBombs, premjesti u Player i EnemyPlayer
 
-        public HealthPoints Hp => hp;
+        public HealthPoints Hp => _hp;
 
         private bool MoveToTileLogic(Vector2Int newPos)
         {
-            if (!map.CheckInBounds(newPos)) { return false; }
-            currentTile?.RemoveFromTile(this);
-            currentTile = map.TileMatrix[newPos.x, newPos.y];
-            currentTile.AddToTile(this);
+            if (!_map.CheckInBounds(newPos)) { return false; }
+            
+            if (_currentTile) { _currentTile.RemoveFromTile(this); }
+            _currentTile = _map.TileMatrix[newPos.x, newPos.y];
+            _currentTile.AddToTile(this);
             return true;
         }
 
@@ -28,19 +29,19 @@ namespace Characters
             if (!success) return false;
 
             //TODO make movement animation
-            this.transform.position = currentTile.transform.position;
+            this.transform.position = _currentTile.transform.position;
             return true;
         }
 
         protected void Awake()
         {
-            map = MapManager.Instance;
+            _map = MapManager.Instance;
         }
 
         protected void Start()
         {
-            MoveToTileLogic(startPosition);
-            this.transform.position = currentTile.transform.position;
+            MoveToTileLogic(_startPosition);
+            this.transform.position = _currentTile.transform.position;
         }
     }
 }

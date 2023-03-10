@@ -8,7 +8,7 @@ namespace Cards
 
         public override bool Ability()
         {
-            return character.MoveToTile(character.CurrentTile.Position + new Vector2Int(-1, 0));
+            return _character.MoveToTile(_character.CurrentTile.Position + new Vector2Int(-1, 0));
         }
     }
 }

@@ -3,7 +3,6 @@ namespace Cards
 
     public class Teleport : BaseCard
     {
-
         public override int Id => 22;
 
         public override bool Ability()

@@ -16,21 +16,21 @@ namespace Cards.TargetCards
         protected abstract bool Ability(Vector2Int selectedRelative);
 
         //TODO mozda se moglo s listom selected tiles u Tile skripti
-        private List<Tile> canSelectTiles;
+        private List<Tile> _canSelectTiles;
 
-        private Tile selectedTile;
+        private Tile _selectedTile;
 
         public override void Awake()
         {
             base.Awake();
-            canSelectTiles = new List<Tile>();
+            _canSelectTiles = new List<Tile>();
         }
 
         //protected Vector2Int selectedTileRelative;
         public override void OnMouseDown()
         {
-            if (hand.CanPlayCards == false) return;
-            gameManager.CardQueue.Add(this);
+            if (_hand.CanPlayCards == false) return;
+            _gameManager.CardQueue.Add(this);
             // na kraju korutine se unisti karta
             //StartCorutine(WaitForPlayerSelect());
         }
@@ -50,12 +50,12 @@ namespace Cards.TargetCards
                 yield return null;
             }
             */
-            yield return new WaitUntil(() => selectedTile != null);
-            Vector2Int selectedTileRelative = selectedTile.Position - character.CurrentTile.Position;
+            yield return new WaitUntil(() => _selectedTile != null);
+            Vector2Int selectedTileRelative = _selectedTile.Position - _character.CurrentTile.Position;
             Ability(selectedTileRelative);
 
-            hand.RemoveCard(this);
-            hand.onCardPlayed?.Invoke();
+            _hand.RemoveCard(this);
+            _hand.onCardPlayed?.Invoke();
             UnmarkTilesSelected();
         }
 
@@ -65,18 +65,18 @@ namespace Cards.TargetCards
             if (tile == null) return;
 
             ChangeColor(tile, Color.green);
-            canSelectTiles.Add(tile);
+            _canSelectTiles.Add(tile);
             tile.CanBeSelected = true;
         }
 
         protected void UnmarkTilesSelected()
         {
-            foreach (Tile t in canSelectTiles)
+            foreach (Tile t in _canSelectTiles)
             {
                 t.CanBeSelected = false;
             }
 
-            canSelectTiles.Clear();
+            _canSelectTiles.Clear();
         }
     }
 }
