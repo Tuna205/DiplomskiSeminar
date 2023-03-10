@@ -68,8 +68,7 @@ namespace Hands
             Destroy(card.gameObject);
             RearrangeCards(siblingIndex);
         }
-
-        //need number of cards and card child count from hand parent
+        
         private void RearrangeCards(int destroyedSiblingIndex)
         {
             foreach (Transform t in this.transform)

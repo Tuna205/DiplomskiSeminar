@@ -7,17 +7,7 @@ namespace Maps
         private readonly List<Tile> _selectedTiles;
 
         private static SelectedTiles _instance = null;
-        public static SelectedTiles Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = new SelectedTiles();
-                }
-                return _instance;
-            }
-        }
+        public static SelectedTiles Instance => _instance ??= new SelectedTiles();
 
         private SelectedTiles()
         {

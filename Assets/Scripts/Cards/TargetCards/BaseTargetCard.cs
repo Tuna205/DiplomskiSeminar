@@ -56,7 +56,7 @@ namespace Cards.TargetCards
 
             _hand.RemoveCard(this);
             _hand.onCardPlayed?.Invoke();
-            UnmarkTilesSelected();
+            UnMarkTilesSelected();
         }
 
         protected void MarkTilesSelectable(Vector2Int pos)
@@ -69,7 +69,7 @@ namespace Cards.TargetCards
             tile.CanBeSelected = true;
         }
 
-        protected void UnmarkTilesSelected()
+        private void UnMarkTilesSelected()
         {
             foreach (Tile t in _canSelectTiles)
             {

@@ -9,8 +9,6 @@ namespace Characters
     public abstract class BaseCharacter : LevelObject
     {
         [SerializeField] private HealthPoints _hp;
-        [SerializeField] private PlayerBombs _enemyBombs;//? kad se makne makni PlayerBombs, premjesti u Player i EnemyPlayer
-
         public HealthPoints Hp => _hp;
 
         private bool MoveToTileLogic(Vector2Int newPos)

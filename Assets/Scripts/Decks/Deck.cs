@@ -30,8 +30,7 @@ namespace Decks
             this.GetComponent<SpriteRenderer>().sprite = _cardBack.artwork;
 
         }
-
-        //zovi samo iz Hand.Draw
+        
         public List<int> Draw(int n)
         {
             List<int> cardsDrawn = new List<int>();
